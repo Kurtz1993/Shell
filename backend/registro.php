@@ -72,7 +72,13 @@ Clave:<input type="text" name="clave"/>
 </form>
 
 </div>
-<?php echo $msg['msg']?>
+<?php
+	if(isset($msg['result'])){
+		echo $msg['msg'];
+		if($msg['result']==true)
+			echo'<meta http-equiv="refresh" content="2;URL=index.php"/> ';
+	}
+?>
 </div>
 
 

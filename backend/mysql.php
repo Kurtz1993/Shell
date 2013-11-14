@@ -137,7 +137,6 @@ var $dbCon;
 
 							return array('result' => true,
 										 'msg' => 'Su registro se ha completado satisfactoriamente'); 
-							echo'<meta http-equiv="refresh" content="2;URL=index.php"/> ';  
 						}
 						else{
 							return array('result' => true,
