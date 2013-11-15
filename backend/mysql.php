@@ -65,13 +65,12 @@ var $dbCon;
 	      
 	      if(intval($datos[0]['id'])== 1){ 
 	        $_SESSION['id'] = 1;
-	        header('location:administrador.php');  //redirecciono
+	        header('location:admin.php');  //redirecciono
 	        exit;
 	      }
 	      else{ 
 	        $_SESSION['id'] = 2;
-	        echo "esto deberia ir a pagina usuario";
-	  //      header('location:usuario.php');  //redirecciono
+	        header('location:usuario.php');  //redirecciono
 	        exit;
 	      }
 	 	}
