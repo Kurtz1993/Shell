@@ -8,11 +8,10 @@
 	</style>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
-	<script src="Resouces/js/jquery.js"></script>
+	<script src="Resources/js/jquery.js"></script>
 	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 </head>
 <body>
-
 	<center><IMG SRC="img/shell.png" WIDTH="178" HEIGHT="180"></center>
 	<br>
 	<nav class="navbar navbar-fixed-top">

@@ -1,0 +1,42 @@
+/*body { padding-top: 60px; padding-bottom: 40px; }*/
+
+body{
+	background-image: -webkit-gradient(linear, left 0%, left 100%, from(#d7d7d7), to(#a0a0a0));
+	background-image: -webkit-linear-gradient(top, #d7d7d7, 0%, #a0a0a0, 100%);
+	background-image: -moz-linear-gradient(top, #d7d7d7 0%, #a0a0a0 100%);
+	background-image: linear-gradient(to bottom, #d7d7d7 0%, #a0a0a0 100%);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe8e8e8', endColorstr='#c2c2c2', GradientType=0);
+	min-height: 20px;
+	background-color: #c2c2c2;
+	border-radius: 4px;
+}
+footer{margin-top: 3.5%;}
+div#loginNav{ width: auto; }
+li#loggedUser{ color: #FFFFFF; }
+section#registerForm{ 
+	margin-right: auto; 
+	margin-left: auto;
+	text-align: center; 
+	width: 30%; 
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
+	-ms-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: 1px 1px 10px;
+	-moz-box-shadow: 1px 1px 10px;
+	-o-box-shadow: 1px 1px 10px;
+	-ms-box-shadow: 1px 1px 10px;
+	box-shadow: 1px 1px 10px;
+}
+h2.panel-heading{
+	-webkit-border-radius: 20px 20px 0px 0px;
+	-moz-border-radius: 20px 20px 0px 0px;
+	-o-border-radius: 20px 20px 0px 0px;
+	-ms-border-radius: 20px 20px 0px 0px;
+	border-radius: 20px 20px 0px 0px;
+}
+div#userData{ padding: 0% 13%; }
+div#userData > input{ margin-top: 5%; }
+button#register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131;}
