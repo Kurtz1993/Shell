@@ -7,6 +7,7 @@
         <div class="navbar-collapse collapse navbar-right" id="loginNav">
         	<!-- Aquí irá el nombre del usuario loggeado, que se extraerá de la BD -->
 			<a href="" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+      <a href="index.php?action=destroy">Cerrar Sesion</a>
 		</div>
       </div>
 </nav>

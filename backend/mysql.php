@@ -1,4 +1,5 @@
 <?php 
+//require("class.phpmailer.php");
 
 class mysql{
 
@@ -58,24 +59,25 @@ var $dbCon;
 	  
 	  $datos = $this->query_assoc($consult);
 
+
 		if(count($datos)>0)   //verifico si el tamaño del vector es 0  (si es que existe un registro, siempre sera 0, ya que los registros no se repiten)
 		{
 	   	  $_SESSION['usuario'] = $usuario;  //asigno mis variables enviadas por el index, a las variables de sesion
 	      $_SESSION['password'] = $password;
 	      
-	      if(intval($datos[0]['id'])== 1){ 
+	      if(intval($datos[0]['idUsuario'])== 1){ 
 	        $_SESSION['id'] = 1;
-	        header('location:admin.php');  //redirecciono
+	        header('location:../administrador.php');  //redirecciono
 	        exit;
 	      }
 	      else{ 
 	        $_SESSION['id'] = 2;
-	        header('location:usuario.php');  //redirecciono
+	        header('location:../table.php');  //redirecciono
 	        exit;
 	      }
 	 	}
 		else{
-	       header('location:index.php');   //redireccionox
+	       header('location:../index.php');   //redireccionox
 	       exit;
 	 	}
 	}
@@ -111,9 +113,9 @@ var $dbCon;
 		return mysql_insert_id();
 	}
 
-	public function registro($usuario, $password, $clave, $password2){ 
+	public function registro($usuario, $password, $clave, $password2, $corporation, $email, $phone){ 
 
-		 if ($usuario!='' and $password!='' and $clave!='' and $password2!=''){
+	//	 if ($usuario!='' and $password!='' and $clave!='' and $password2!=''){		//valido campos vacios
 		 		$consult = "SELECT nickname FROM usuarios WHERE nickname = '$usuario'";
 		 		$result = $this->query_assoc($consult);
 		 		
@@ -125,22 +127,32 @@ var $dbCon;
 				}
 				else{	
 
-					if($password == $password2){
-						$consult = "SELECT clave, id FROM usuarios WHERE clave = '$clave'";
+					if($password == $password2){		//reviso que las 2 passwords seleccionas por el usuario, sean iguales
+						$consult = "SELECT clave, id FROM usuarios WHERE clave = '$clave'";		//consulta pa saber si existe la clave ingresada por el usuario
 						$result = $this->query_assoc($consult);
 
 						if(count($result) > 0){
-							$id = intval($result[0]['id']);
+							
+							// $msg = $mysql->email($email, $usuario);
+							// echo var_dump($msg);
+							// exit;
 
-							$consult="UPDATE usuarios SET nickname = '$usuario', password = '$password' WHERE id = '$id'";
+							$id = intval($result[0]['id']);
+							$consult="UPDATE usuarios SET nickname = '$usuario', 
+														  password = '$password',
+														  WHERE id = '$id'";
 							$this->query($consult);
+
+							$consult="INSERT INTO clientes (corporation, tel, correo) 
+												  values ('$corporation', '$phone', '$email')"
 
 							return array('result' => true,
 										 'msg' => 'Su registro se ha completado satisfactoriamente'); 
+							echo'<meta http-equiv="refresh" content="2;URL=index.php"/> ';  
 						}
 						else{
 							return array('result' => true,
-										 'msg' => 'Su clave de registro es incorrecta, verifique que sea la correcta,
+										 'msg' => 'Su clave de registro es incorrecta o no existe, verifique que sea la correcta,
 										 o pongase en contacto con su administrador'); 
 						}
 					}
@@ -151,11 +163,47 @@ var $dbCon;
 
 				}
 							
-		} 
-		else{
-			return array('result' => false,
-						 'msg' => 'Falta completar alguno de los campos!'); 
-		}	
+		// } 
+		// else{
+		// 	return array('result' => false,
+		// 				 'msg' => 'Falta completar alguno de los campos!'); 
+		// }	
 	}
+
+	// private function mail($Emaildestino, $destinatario){
+
+	// 	$mail = new PHPmailer();
+
+	// 	//Inicio de la validación por SMTP:
+	// 	$mail->IsSMTP();
+	// 	$mail->SMTPAuth = true;
+	// 	$mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
+	// 	$mail->Username = "contacto.shell@gmail.com"; // Correo completo a utilizar
+	// 	$mail->Password = "Torres20"; // Contraseña
+	// 	$mail->Port = 465; // Puerto a utilizar
+
+	// 	//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
+	// 	$mail->From = "contacto.shell@gmail.com"; // Desde donde enviamos (Para mostrar)
+	// 	$mail->FromName = "ContactoShell";
+
+	// 	//Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
+	// 	$mail->AddAddress($Emaildestino); // Esta es la dirección a donde enviamos
+	// 	$mail->IsHTML(true); // El correo se envía como HTML
+	// 	$mail->Subject = "Correo Activacion"; // Este es el titulo del email.
+	// 	$body = "Hola $destinatario<br/> <br/>";
+	// 	$body .= "<strong>Para completar tu registro ve al siguiente link</strong> <br/> <br/>";
+	// 	$mail->Body = $body; // Mensaje a enviar
+	// 	$exito = $mail->Send(); // Envía el correo.
+
+	// 	//También podríamos agregar simples verificaciones para saber si se envió:
+	// 	if($exito){
+	// 		return array('result' => true,
+	// 					 'msg' => 'Se ha enviado un correo de verificcion a $Emaildestino');
+	// 	}else{
+	// 		return array('result' => false,
+	// 					 'msg' => 'Se dio un problema inesperado en el elnvio del
+	// 					  correo de verificacion, por favor contacta al adminstrador');
+	// 	}
+	// }
 }
 ?>
