@@ -7,7 +7,7 @@ $mysql = new mysql();
 //comprobar correcto login ------------------------------------------------------------------------------------
 if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] != 1))
 {
-	echo "No has iniciado secion aun o esta no es tu cuenta";
+	echo "No has iniciado sesión aún o esta no es tu cuenta.";
 	header("location:perdido.php");
 	exit;
 }
@@ -51,31 +51,18 @@ type="text/css" href="styleproyect.css" />
 <script type="text/javascript" src="script.js"></script>
 
 </head>
-
 	<body>
-
 		<div class="div1">
-
 			<div class="div4">
-
 				<a href="admin.php?action=destroy">Cerrar Sesion</a>
-
 			</div>
-
-
 			<div class="div2">
-
 				<h1>ADMINISTRADOR</h1>
-
 				<br />
 				<br />
-
 				<form action="admin.php" method="post" name="form1">
-
 					Generar codigo<input type="text" class="txt" name="textbox"/>
-
 					<input type="button" value="generar codigo" onclick="clave();"/>
-
 					<input type="submit" value="guardar clave" />
 					<br />
 					<br />
@@ -83,24 +70,17 @@ type="text/css" href="styleproyect.css" />
 					echo $msg['msg'];
 					?>
 				</form>
-
 			</div>
-
 			<br />
 			<br />
-
 			<div class="div3">
-
 			<table border="1" width="100%" cellpadding="5" class="table">
 					<th>Id</th>
 					<th>NickName</th>
 					<th>Password</th>
 					<th>clave</th>
-						
 					<?php 
-
 						$tabla = $mysql->get_usuarios();
-
 						foreach ($tabla as $key => $value) {
 							echo '<tr class="row">
 								<td>'.$value['id'].'</td>
@@ -111,10 +91,8 @@ type="text/css" href="styleproyect.css" />
 						}
 						$mysql->exit_conect();
 					?>
-
 			</div>
 		</div>
-
 	</body>
 </html>
 
