@@ -7,7 +7,7 @@
 <body>
 	<div class="perdido" align="center">
 		<img src="perdido.png">
-		<a href="index.php">INICIO</a>
+		<a href="../index.php">INICIO</a>
 	</div>
 	<br/>
 </body>

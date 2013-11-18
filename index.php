@@ -11,9 +11,19 @@
 </head>
 <body>
 	<?php 
-		//Aquí va la validación dependiendo de si está loggeado o no el usuario... aquí pondrás tu condición.
+
+	session_start();
+
+	if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2)){
 		include('login.html');
-		//include('logged.php');
+	}
+	else{
+		include('logged.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
+	}
+		
 	?>
 	<center><img src="img/shell.png"></center>
 	<footer class="navbar navbar-inverse navbar-bottom">
@@ -26,11 +36,9 @@
 		</div>
 	</footer>
 	<script>
-		$(document).ready(function(){
-			$('#startPage').css({
-				color: '#FFFFFF',
-				background: '#383838'
-			});
+		$('#startPage').css({
+			color: '#FFFFFF',
+			background: '#383838'
 		});
 	</script>
 </body>
