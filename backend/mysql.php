@@ -6,10 +6,16 @@ class mysql{
 var $dbCon;
 
 	public function __construct(){
-		$this->dbCon = mysql_connect("127.0.0.1","root","");
+		$this->dbCon = mysql_connect("localhost","root","");
 	}
-//$link = mysql_connect("ip de localhost","usuario","password");
-//mysql_select_db("nombre de base de datos",$link);
+	//$link = mysql_connect("ip de localhost","usuario","password");
+	//mysql_select_db("nombre de base de datos",$link);
+	/* Datos de conexión a la base de datos remota:
+	 * Host: 137.135.47.206
+	 * User: Kurtz
+	 * Pass: aiur
+	 * DB: shell
+	*/
 
 	public function conect(){
 		mysql_select_db("shell",$this->dbCon);

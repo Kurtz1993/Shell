@@ -14,7 +14,7 @@ body{
 footer{margin-top: 3.5%;}
 div#loginNav{ width: auto; }
 li#loggedUser{ color: #FFFFFF; }
-section#registerForm{ 
+section.webForm{ 
 	margin-right: auto; 
 	margin-left: auto;
 	text-align: center; 
@@ -40,3 +40,4 @@ h2.panel-heading{
 div#userData{ padding: 0% 13%; }
 div#userData > input{ margin-top: 5%; }
 button#register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131;}
+div#adminPanel{ padding: 3%; }

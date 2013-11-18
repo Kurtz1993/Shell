@@ -21,8 +21,6 @@ if(isset($_POST['username']) && isset($_POST['password'])
 
 	$mysql->exit_conect();
 }
-
-
 ?>
 
 <!doctype html>
@@ -42,7 +40,7 @@ if(isset($_POST['username']) && isset($_POST['password'])
 		//include('logged.php');
 	?>
 	<!-- <center><IMG SRC="img/shell.png" WIDTH="178" HEIGHT="180"></center> -->
-	<section id="registerForm" class="panel-success">
+	<section class="panel-success webForm">
 		<h2 class="panel-heading">Registration</h2>
 		<form action="register.php" method="post" id="newUserForm">
 			<div id="userData">
