@@ -10,8 +10,10 @@ function Clave(){
 }
 
 function loadMap(latitude, longitude){
+	var coord = new google.maps.LatLng(latitude, longitude);
+
 	var optionsMap = {
-		center : new google.maps.LatLng(latitude, longitude),
+		center : coord,
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
 		zoom : 15
 	};
@@ -37,28 +39,16 @@ function loadMap(latitude, longitude){
 		};
 
 		var mapMark = new google.maps.Marker(markerOptions);
-		google.maps.event.addListener(mapMark,'click',function(event){
-			var optionsInfo = {
-				content : 'Nombre: ' + name +'<br>Teléfono: ' + tel
-			};
-			var infowindow = new google.maps.InfoWindow(optionsInfo);
-			infowindow.open(this.getMap(),this);
-		});
 
 		this.Markers.push(mapMark);
 
 		mapa.DeleteMarkers();
 
-	var coordinates = {
-		position: new google.maps.LatLng(latitude, longitude),
-		map: mapa
+		var coordinates = {
+			position: new google.maps.LatLng(latitude, longitude),
+			map: mapa
+		};
+		var currentPosition = new google.maps.Marker(coordinates);
 	};
-	var currentPosition = new google.maps.Marker(coordinates);
-	var infoOpts = {
-	//	content: 'Nombre: ' + name +'<br>Teléfono: ' + tel
-	};
-	var contactInfo = new google.maps.InfoWindow(infoOpts);
-	contactInfo.open(currentPosition.getMap(), currentPosition);
-	mapa.Markers.push(currentPosition);
-	};
+	mapa.AddMarker(coord);
 }
