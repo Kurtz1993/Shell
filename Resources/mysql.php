@@ -1,12 +1,12 @@
 <?php 
-//require("class.phpmailer.php");
+require('phpmailer.php');
 
 class mysql{
 
 var $dbCon;
 
 	public function __construct(){
-		$this->dbCon = mysql_connect("137.135.47.206","root","Lok'tar93");
+		$this->dbCon = mysqli_connect("137.135.47.206","root","Lok'tar93");
 
 		if(!$this->dbCon)
 			$this->show_error();
@@ -19,11 +19,11 @@ var $dbCon;
 	*/
 
 	public function conect(){
-		mysql_select_db("shell",$this->dbCon);
+		mysqli_select_db("shell",$this->dbCon);
 	}
 
 	public function query($consult){
-		$query = mysql_query($consult, $this->dbCon);
+		$query = mysqli_query($consult, $this->dbCon);
 		if(!$query){
 			$this->show_error();
 		}
@@ -33,13 +33,13 @@ var $dbCon;
 	}
 
 	private function show_error(){
-		die("ERROR: ".mysql_error());
+		die("ERROR: ".mysqli_error());
 	}
 
 	public function query_assoc($consult){
 		$result = $this->query($consult);
 		$vec = array();
-		while($fila = mysql_fetch_assoc($result)){
+		while($fila = mysqli_fetch_assoc($result)){
 			$vec[] = $fila;
 			//echo var_dump($vec);
 			//exit;
@@ -48,7 +48,7 @@ var $dbCon;
 	}
 
 	public function exit_conect(){
-		mysql_close($this->dbCon);
+		mysqli_close($this->dbCon);
 	}
 
 	public function destroy(){
@@ -110,10 +110,11 @@ var $dbCon;
 	}
 
 	public function obtenerId(){
-		return mysql_insert_id();
+		return mysqli_insert_id();
 	}
 
 	public function registro($usuario, $password, $clave, $password2, $corporation, $email, $phone){ 
+ 		
  		$consult = "SELECT nickname FROM usuarios WHERE nickname = '$usuario'";
  		$result = $this->query_assoc($consult);
  		
@@ -138,6 +139,9 @@ var $dbCon;
 												  WHERE idUsuario = $id";
 					$this->query($consult);
 
+					$res['res'] = $this->mail($email, $usuario);
+					
+
 					return array('result' => true,
 								 'msg' => 'Su registro se ha completado satisfactoriamente'); 
 					echo'<meta http-equiv="refresh" content="2;URL=index.php"/> ';  
@@ -155,40 +159,63 @@ var $dbCon;
 		}
 	}
 
-	// private function mail($Emaildestino, $destinatario){
+	public function mail($emaildestino, $destinatario){
 
-	// 	$mail = new PHPmailer();
+		$phpmailer = new PHPMailer();
 
-	// 	//Inicio de la validación por SMTP:
-	// 	$mail->IsSMTP();
-	// 	$mail->SMTPAuth = true;
-	// 	$mail->Host = "smtp.gmail.com"; // SMTP a utilizar. Por ej. smtp.elserver.com
-	// 	$mail->Username = "contacto.shell@gmail.com"; // Correo completo a utilizar
-	// 	$mail->Password = "Torres20"; // Contraseña
-	// 	$mail->Port = 465; // Puerto a utilizar
+		/*AQUI ESTABLECEMOS LAS CONFIGURACIONES DEL SERVIDOR SMTP*/
+		$phpmailer->Mailer = 'smtp'; // Este dato establece que el correo será enviado via smtp
+		$phpmailer->Host = 'ssl://smtp.gmail.com'; // Dirección del SMTP de GMAIL (Aqui puede ir alguna otra dirección de smtp)
+		$phpmailer->Port = 465; //Puerto del SMT especificado anteriormente
 
-	// 	//Con estas pocas líneas iniciamos una conexión con el SMTP. Lo que ahora deberíamos hacer, es configurar el mensaje a enviar, el //From, etc.
-	// 	$mail->From = "contacto.shell@gmail.com"; // Desde donde enviamos (Para mostrar)
-	// 	$mail->FromName = "ContactoShell";
 
-	// 	//Estas dos líneas, cumplirían la función de encabezado (En mail() usado de esta forma: “From: Nombre <correo@dominio.com>”) de //correo.
-	// 	$mail->AddAddress($Emaildestino); // Esta es la dirección a donde enviamos
-	// 	$mail->IsHTML(true); // El correo se envía como HTML
-	// 	$mail->Subject = "Correo Activacion"; // Este es el titulo del email.
-	// 	$body = "Hola $destinatario<br/> <br/>";
-	// 	$body .= "<strong>Para completar tu registro ve al siguiente link</strong> <br/> <br/>";
-	// 	$mail->Body = $body; // Mensaje a enviar
-	// 	$exito = $mail->Send(); // Envía el correo.
+		/*AQUI ESTABLECEMOS LOS DATOS DE QUIEN ENVIA EL CORREO*/
+		$phpmailer->From = 'contacto.shell@gmail.com'; // Este valor debe ser el mismo que el "Username" que se especifica más adelante
+		$phpmailer->FromName = 'Contacto SHELL';
 
-	// 	//También podríamos agregar simples verificaciones para saber si se envió:
-	// 	if($exito){
-	// 		return array('result' => true,
-	// 					 'msg' => 'Se ha enviado un correo de verificcion a $Emaildestino');
-	// 	}else{
-	// 		return array('result' => false,
-	// 					 'msg' => 'Se dio un problema inesperado en el elnvio del
-	// 					  correo de verificacion, por favor contacta al adminstrador');
-	// 	}
-	// }
+
+		/*AQUI ESTABLECEMOS LOS DATOS DE ACCESO DEL USUARIO QUE ENVIARÁ EL CORREO*/
+		$phpmailer->Username = 'contacto.shell@gmail.com'; //Correo electrónico del cual será enviado el correo (debe ser de gmail ya que el SMTP que se esta utilizando es de GMAIL)
+		$phpmailer->Password = 'Torres20'; //Contraseña del correo electrónico anterior
+
+
+		// Aqui va la dirección de correo al que se enviara el mensaje
+		$phpmailer->AddAddress($emaildestino);
+				
+		$phpmailer->WordWrap = 50; // Largo de las lineas
+		$phpmailer->IsHTML(true); // Podemos incluir tags html
+		$phpmailer->Subject  =  'Correo de prueba';//AQUI VA EL ASUNTO;
+		$phpmailer->Body ='<h2>Hola </h2>
+								 <p>
+								 	Le| informamos que su registro ha sido comletado correctamente correctamete.<br />
+								 </p>
+								 <p>
+								 	<h3>Datos de acceso</h3>
+									<div>
+										<strong>Clave de solicitud: </strong>ASDEG563
+									</div>
+									<div style="margin-top:8px;">
+										<strong>Nickname: </strong>micorreo@gmail.com
+									</div>
+									<div style="margin-top:8px;">
+										<strong>Contraseña: </strong>mipassword
+									</div>
+			
+								 </p>';
+
+		$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
+		$mail = $phpmailer->Send();
+
+		if($mail){
+			return array('result' => true,
+  					     'msg' => "Se ha enviado un correo a: $emaildestino");
+	 	}
+	 	else{
+			return array('result' => false,
+ 					     'msg' => 'Se dio un problema inesperado en el elnvio del
+ 					      correo de verificacion, por favor contacta al adminstrador');
+	 	}
+
+	}
 }
 ?>

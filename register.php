@@ -1,12 +1,17 @@
 <?php
 	include('resources/mysql.php');
 	$mysql = new mysql();
+	
 	$msg = array('msg' => "");
+	$res = array('res' => "");
+
 	if(isset($_POST['username']) && isset($_POST['password']) 
 		&& isset($_POST['password2']) && isset($_POST['clave'])
 		&& isset($_POST['corporation']) && isset($_POST['email'])
 		&& isset($_POST['phone'])){
+		
 		$mysql = new mysql();
+		
 		$mysql->conect();	
 		$msg = $mysql->registro($_POST['username'], $_POST['password'], 
 								$_POST['clave'], $_POST['password2'],
@@ -55,7 +60,8 @@
 					   title="Please enter a valid serial number.">
 			</div>
 			<button type="submit" class="btn btn-primary" id="register">Register</button>
-			<div id="resultMsg"><?php echo $msg['msg']; ?></div>
+			<div id="resultMsg"><?php echo $msg['msg']; 
+									  echo $res['res'];?></div>
 		</form>
 		<script>
 			function validate(input){
