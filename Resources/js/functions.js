@@ -8,7 +8,6 @@ function Clave(){
     }
     $('#code').val(text);
 }
-
 function loadMap(latitude, longitude){
 	var coord = new google.maps.LatLng(latitude, longitude);
 
@@ -51,4 +50,21 @@ function loadMap(latitude, longitude){
 		var currentPosition = new google.maps.Marker(coordinates);
 	};
 	mapa.AddMarker(coord);
+}
+function loadRadioButtons(){
+	$.ajax({
+		url: 'resources/requests.php',
+		type: 'post',
+		data: {action: "loadRadios"},
+		dataType: 'JSON',
+		success: function(radio){
+			var template = '<input type="radio" class="rad" name="nodes[]" value="';
+			var radiobuttons = "";
+			for(i=0; i < radio.length; i++){
+				radiobuttons += template + radio[i].idDispositivo+'" id="rad'+radio[i].idDispositivo+'"> ' +
+				'<span class="radText">' + radio[i].nombre+ "</span>"+" ";
+		}
+		$('div#nodes').html(radiobuttons);
+	}
+	});
 }

@@ -19,7 +19,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
     </script>
 	<script src="Resources/js/jquery.js"></script>
 	<script src="Resources/js/functions.js"></script>
-	<script src="Resources/js/scripts.js"></script>
+	<script src="Resources/js/userScripts.js"></script>
 	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 </head>
 <body>
@@ -35,26 +35,8 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	}	
 	?>
 
-	<div id="nodes">
-		<script>
-			$.ajax({
-				url: 'resources/requests.php',
-				type: 'post',
-				data: {action: "loadRadios"},
-				dataType: 'JSON',
-				success: function(radio){
-					var template = '<input type="radio" class="rad" name="nodes[]" value="';
-					var radiobuttons = "";
-					for(i=0; i < radio.length; i++){
-						radiobuttons += template + radio[i].idDispositivo+'" id="rad'+radio[i].idDispositivo+'"> ' +
-						'<span class="radText">' + radio[i].nombre+ "</span>"+" ";
-				}
-				$('div#nodes').html(radiobuttons);
-			}
-			});
-		</script>
-	</div>
-	<div id="map"></div>
+	<div id="nodes"><!-- Fill with all the nodes that the user has --></div>
+	<div id="map"><!-- Fill with device location --></div>
 	<div id="tableData"><!-- Fill with the device data --></div>
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">

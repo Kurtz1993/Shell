@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	loadRadioButtons();
 	$(document).on('click', '.rad', function(event) {
 		$.ajax({
 			url: 'resources/requests.php',

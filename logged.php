@@ -10,7 +10,11 @@
         <?php endif; ?>
       </div>
       <div class="navbar-collapse collapse navbar-right" id="loginNav">
-  			<a class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
+        <?php if($_SESSION['id'] == 1): ?>
+  			<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+        <?php else: ?>
+        <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
+         <?php endif; ?>
         <a href="index.php?action=destroy" class="navbar-brand navbar-col">Sign out</a>
 		  </div>
     </div>
