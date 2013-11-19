@@ -2329,7 +2329,7 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
+  background-color: #071E38;
   border-color: #357ebd;
 }
 
@@ -4796,8 +4796,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: black;
+  /*border-color: #080808;*/
 }
 
 .navbar-inverse .navbar-brand {
@@ -5838,7 +5838,7 @@ a.list-group-item.active:focus .list-group-item-text {
 
 .panel-success > .panel-heading {
   color: #fafafa;
-  background-color: #313131;
+  background-color: #071E38;
   border-color: #d6e9c6;
 }
 

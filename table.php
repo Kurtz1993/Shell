@@ -35,7 +35,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	}	
 	?>
 
-	<div id="nodes" class="form-control">
+	<div id="nodes">
 		<script>
 			$.ajax({
 				url: 'resources/requests.php',
@@ -47,7 +47,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 					var radiobuttons = "";
 					for(i=0; i < radio.length; i++){
 						radiobuttons += template + radio[i].idDispositivo+'" id="rad'+radio[i].idDispositivo+'"> ' +
-						radio[i].nombre + " ";
+						'<span class="radText">' + radio[i].nombre+ "</span>"+" ";
 				}
 				$('div#nodes').html(radiobuttons);
 			}

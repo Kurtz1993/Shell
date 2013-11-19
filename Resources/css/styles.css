@@ -42,3 +42,10 @@ div#userData > input{ margin-top: 5%; }
 button#register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131;}
 div#adminPanel{ padding: 3%; }
 div#map{ height: 400px; width: 50%; border: 1px solid black; margin: 25px auto;}
+div#nodes{
+	text-align: center; width: auto;
+	background-color: #061424;
+	color: white;
+}
+input.rad{ margin: 10px 0 10px 4%; }
+span.radText{ font-size: 1.15em; }
