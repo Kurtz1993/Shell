@@ -2,7 +2,6 @@
 session_start();
 if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2))
 {
-	echo "No has iniciado secion aun o esta no es tu cuenta";
 	header("location:index.php");
 }
 ?>
@@ -14,7 +13,13 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	<title>Shell-System</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
+	<link rel="stylesheet" href="Resources/css/styles.css">
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBSzrc6U_85i4yf8a41AfHpaCqF4K4kEAU&sensor=false">
+    </script>
 	<script src="Resources/js/jquery.js"></script>
+	<script src="Resources/js/functions.js"></script>
+	<script src="Resources/js/scripts.js"></script>
 	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 </head>
 <body>
@@ -36,48 +41,28 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	}	
 	?>
 
-	<section>
-		<nav class="container">
-			<nav class="navbar-inner">
-				<nav class="container" style="width: auto;">
+	<div id="nodes" class="form-control">
+		<script>
+			$.ajax({
+				url: 'requests.php',
+				type: 'post',
+				data: {action: "loadChecks"},
+				dataType: 'JSON',
+				success: function(radio){
+					var template = '<input type="radio" class="rad" name="nodes[]" value="';
+					var radiobuttons = "";
+					for(i=0; i < radio.length; i++){
+						radiobuttons += template + radio[i].idDispositivo+'" id="rad'+radio[i].idDispositivo+'"> ' +
+						radio[i].nombre + " ";
+				}
+				$('div#nodes').html(radiobuttons);
+			}
+			});
+		</script>
+	</div>
+	<div id="map"></div>
+	<div id="tableData"><!-- Fill with the device data --></div>
 
-					<fieldset class="scheduler-border">
-						<br>
-						<legend class="scheduler-border">Filtros</legend>
-							<center>
-								Fecha: <input rel="tooltip" title="Fecha de nacimiento" class="span3" type="date" required>
-								<span class="divider">/</span>
-								<span class="divider">/</span>
-								<input type="checkbox" name="Temperatura"> Temperatura
-								<input type="checkbox" name="Humedad"> Humedad
-								<span class="divider">/</span>
-								<span class="divider">/</span>
-						        <input type="radio" name="nodos" value="Nodo1"> Nodo 1 
-						        <input type="radio" name="nodos" value="Nodo2"> Nodo 2 
-						        <input type="radio" name="nodos" value="Nodo3"> Nodo 3 
-								<button class="btn btn-primary">Filtrar</button></center><br>
-							</center>
-					</fieldset>
-
-					<table border="3" align="center">
-						<thead>
-							<td class="span3" align="center">Fecha</td>
-							<td class="span3" align="center">Temperatura</td>
-							<td class="span3" align="center">Humedad</td>
-						</thead>
-
-						<tbody>
-							<td class="span3" align="center">13/08/13</td>
-							<td class="span3" align="center">11</td>
-							<td class="span3" align="center">13</td>
-						</tbody>
-					</table>
-					<br>
-				</nav>
-			</nav>
-		</nav>
-	</section>
-	
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">

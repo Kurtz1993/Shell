@@ -5,8 +5,6 @@ $mysql = new mysql();
 //comprobar correcto login ------------------------------------------------------------------------------------
 if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] != 1))
 {
-	echo "Acceso Denegado <br>";
-	echo "No has iniciado sesión, o esta no es tu cuenta.";
 	header("location:backend/perdido.php");
 	exit;
 }
@@ -35,7 +33,7 @@ $mysql->exit_conect()   //cierro la coneccion
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
 	<link rel="stylesheet" href="Resources/css/styles.css">
 	<script src="Resources/js/jquery.js"></script>
-	<script src="Resources/js/scripts.js"></script>
+	<script src="Resources/js/functions.js"></script>
 </head>
 <body>
 	<?php
