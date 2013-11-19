@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	$(document).on('click', '.rad', function(event) {
-		//alert($(this).val());
 		$.ajax({
 			url: 'resources/requests.php',
 			type: 'post',

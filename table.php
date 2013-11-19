@@ -38,9 +38,9 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	<div id="nodes" class="form-control">
 		<script>
 			$.ajax({
-				url: 'requests.php',
+				url: 'resources/requests.php',
 				type: 'post',
-				data: {action: "loadChecks"},
+				data: {action: "loadRadios"},
 				dataType: 'JSON',
 				success: function(radio){
 					var template = '<input type="radio" class="rad" name="nodes[]" value="';

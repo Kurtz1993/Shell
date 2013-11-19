@@ -8,8 +8,8 @@ body{
 	min-height: 20px;
 	background-color: #c2c2c2;
 	border-radius: 4px;
-	padding-top: 80px;
-	padding-bottom: 75px;
+	padding-top: 55px;
+	padding-bottom: 90px;
 }
 footer{margin-top: 3.5%;}
 div#loginNav{ width: auto; }
@@ -41,4 +41,4 @@ div#userData{ padding: 0% 13%; }
 div#userData > input{ margin-top: 5%; }
 button#register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131;}
 div#adminPanel{ padding: 3%; }
-div#map{ height: 400px; width: 50%; border: 1px solid black; margin: 0% auto;}
+div#map{ height: 400px; width: 50%; border: 1px solid black; margin: 25px auto;}
