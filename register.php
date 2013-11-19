@@ -74,17 +74,10 @@
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-col" href="#">Terms and Conditions</a>
-				<a class="navbar-brand navbar-col" href="#">Help</a>
-				<a class="navbar-brand navbar-col" href="#">Porn</a>
+				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
 			</div>
 		</div>
 	</footer>
-	<script>
-		$('#registerPage').css({
-			color: '#FFFFFF',
-			background: '#383838'
-		});
-	</script>
+	<script> $('#registerPage').css({color: '#FFFFFF', background: '#383838'});	</script>
 </body>
 </html>

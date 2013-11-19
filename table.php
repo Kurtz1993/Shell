@@ -56,21 +56,13 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	</div>
 	<div id="map"></div>
 	<div id="tableData"><!-- Fill with the device data --></div>
-
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-col" href="#">Terms and Conditions</a>
-				<a class="navbar-brand navbar-col" href="#">Help</a>
-				<a class="navbar-brand navbar-col" href="#">Porn</a>
+				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
 			</div>
 		</div>
 	</footer>
-	<script>
-		$('#nodesPage').css({
-			color: '#FFFFFF',
-			background: '#383838'
-		});
-	</script>
+	<script> $('#nodesPage').css({color: '#FFFFFF',	background: '#383838'}); </script>
 </body>
 </html>

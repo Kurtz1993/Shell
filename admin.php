@@ -34,9 +34,7 @@ $mysql->exit_conect()   //cierro la coneccion
 	<script src="Resources/js/functions.js"></script>
 </head>
 <body>
-	<?php
-		include('logged.php');
-	?>
+	<?php include('logged.php'); ?>
 	<section class="panel-success webForm">
 		<h2 class="panel-heading">Administrador</h2>
 		<form action="admin.php" method="post" name="codeGen">
@@ -45,10 +43,7 @@ $mysql->exit_conect()   //cierro la coneccion
 				<input type="button" value="Generar código" onclick="Clave();">
 				<input type="submit" value="Guardar clave">
 				<div id="resultMsg">
-					<?php
-						if(isset($msg))
-							echo $msg['msg'];
-				 	?>
+					<?php if(isset($msg)) echo $msg['msg'];	?>
 				</div>
 			</div>
 	</section>
@@ -62,11 +57,10 @@ $mysql->exit_conect()   //cierro la coneccion
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-col" href="#">Terms and Conditions</a>
-				<a class="navbar-brand navbar-col" href="#">Help</a>
-				<a class="navbar-brand navbar-col" href="#">Porn</a>
+				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
 			</div>
 		</div>
 	</footer>
+	<script> $('#adminPage').css({ color: '#FFFFFF', background: '#383838' }); </script>
 </body>
 </html>
