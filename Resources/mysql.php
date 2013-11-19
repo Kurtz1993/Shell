@@ -69,17 +69,17 @@ var $dbCon;
 	      
 	      if(intval($datos[0]['idUsuario'])== 1){ 
 	        $_SESSION['id'] = 1;
-	        header('location:../admin.php');  //redirecciono
+	        header('Location:admin.php');  //redirecciono
 	        exit;
 	      }
 	      else{ 
 	        $_SESSION['id'] = 2;
-	        header('location:../table.php');  //redirecciono
+	        header('Location:table.php');  //redirecciono
 	        exit;
 	      }
 	 	}
 		else{
-	       header('location:../index.php');   //redireccionox
+	       header('Location:index.php');   //redireccionox
 	       exit;
 	 	}
 	}
