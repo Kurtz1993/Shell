@@ -15,11 +15,11 @@
 	<?php
 	session_start();
 
-	echo var_dump($_SESSION['usuario']);
-	//exit;
-
-	if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2)){
-		include('login.html');
+	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
+		include('logged.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
 	}
 	elseif((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] == 1)){
 		include('loggedAdmin.php');
@@ -28,12 +28,8 @@
 		include('backend/switch.php');
 	}
 	else{
-		include('logged.php');
-		include('backend/mysql.php');
-		$mysql = new mysql();
-		include('backend/switch.php');
-	}
-		
+		include('login.html');
+	}	
 	?>
 	<center><img src="img/shell.png"></center>
 	<footer class="navbar navbar-inverse navbar-bottom">

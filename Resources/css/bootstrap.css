@@ -4462,6 +4462,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-fixed-top,
 .navbar-bottom {
+  position: fixed;
   right: 0;
   left: 0;
   z-index: 1030;
@@ -4664,11 +4665,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-bottom: 8px;
 }
 
-.active{
-  color: #FFFFFF;
-  background-color: #222222;
-}
-
 .navbar-text {
   float: left;
   margin-top: 15px;
@@ -4806,10 +4802,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse .navbar-brand {
   color: #999999;
-}
-
-.navbar-inverse .navbar-col {
-  color: #fafafa;
 }
 
 .navbar-inverse .navbar-brand:hover,

@@ -34,10 +34,14 @@ if(isset($_POST['username']) && isset($_POST['password'])
 	<link rel="stylesheet" href="Resources/css/styles.css">
 </head>
 <body>
-	<?php 
+	<?php
+	session_start();
 
-	if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2)){
-		include('login.html');
+	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
+		include('logged.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
 	}
 	elseif((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] == 1)){
 		include('loggedAdmin.php');
@@ -46,11 +50,8 @@ if(isset($_POST['username']) && isset($_POST['password'])
 		include('backend/switch.php');
 	}
 	else{
-		include('logged.php');
-		include('backend/mysql.php');
-		$mysql = new mysql();
-		include('backend/switch.php');
-	}
+		include('login.html');
+	}	
 	?>
 	<!-- <center><IMG SRC="img/shell.png" WIDTH="178" HEIGHT="180"></center> -->
 	<section class="panel-success webForm">

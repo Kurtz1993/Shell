@@ -38,10 +38,8 @@ $mysql->exit_conect()   //cierro la coneccion
 	<script src="Resources/js/scripts.js"></script>
 </head>
 <body>
-	<?php 
-		//Aquí va la validación dependiendo de si está loggeado o no el usuario... aquí pondrás tu condición.
+	<?php
 		include('loggedAdmin.php');
-		//include('logged.php');
 	?>
 
 	<section class="panel-success webForm">

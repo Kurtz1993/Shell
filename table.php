@@ -1,39 +1,40 @@
+<?php
+session_start();
+if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2))
+{
+	echo "No has iniciado secion aun o esta no es tu cuenta";
+	header("location:index.php");
+}
+?>
+
 <!doctype html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<title>Shell-System</title>
-	<style type="text/css">
-		body { padding-top: 60px; padding-bottom: 40px; }
-	</style>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
 	<script src="Resources/js/jquery.js"></script>
 	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 </head>
 <body>
-	<center><IMG SRC="img/shell.png" WIDTH="178" HEIGHT="180"></center>
-	<br>
-	<nav class="navbar navbar-fixed-top">
-		<nav class="navbar">
-			<nav class="navbar-inner">
-				<nav class="container" style="width: auto;">
-					<a class="brand" href="#">SHELL</a>
-					<nav class="nav-collapse">
-						<ul class="nav">
-							<li><a href="index.html">Inicio</a></li>
-							<li class="active"><a href="registrarse.html">Registrarse</a></li>
-						</ul>
-					</nav>
-					<form class="navbar-form pull-right" action="">
-						<input type="text" class="span2" placeholder="Usuario" autofocus required>
-						<input type="password" class="span2" placeholder="Contraseña" required>
-						<button type="submit" class="btn btn-primary">Log In</button>
-					</form>
-				</nav>
-			</nav>
-		</nav>
-	</nav>
+	<?php
+	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
+		include('logged.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
+	}
+	elseif((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] == 1)){
+		include('loggedAdmin.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
+	}
+	else{
+		include('login.html');
+	}	
+	?>
 
 	<section>
 		<nav class="container">
@@ -77,21 +78,20 @@
 		</nav>
 	</section>
 	
-	<footer class="navbar navbar-fixed-bottom">
-		<center>
-			<ul class="breadcrumb">
-				<li>
-					<a href="#">Terminos & Condiciones</a> <span class="divider">|</span>
-				</li>
-				<li>
-					<a href="#">Ayuda</a> <span class="divider">|</span>
-				</li>
-				<li>
-					<a href="#">Porno</a>
-				</li>
-			</ul>
-		</center>
+	<footer class="navbar navbar-inverse navbar-bottom">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand navbar-col" href="#">Terms and Conditions</a>
+				<a class="navbar-brand navbar-col" href="#">Help</a>
+				<a class="navbar-brand navbar-col" href="#">Porn</a>
+			</div>
+		</div>
 	</footer>
-	
+	<script>
+		$('#nodesPage').css({
+			color: '#FFFFFF',
+			background: '#383838'
+		});
+	</script>
 </body>
 </html>

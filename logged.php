@@ -6,7 +6,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-right" id="loginNav">
         	<!-- Aquí irá el nombre del usuario loggeado, que se extraerá de la BD -->
-			<label class="navbar-brand navbar-col" id="loggedUser">Welcome, Noob!</label>
+			<label class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</label>
       <a href="index.php?action=destroy" class="navbar-brand navbar-col">Sign out</a>
 		</div>
       </div>
