@@ -35,9 +35,22 @@ if(isset($_POST['username']) && isset($_POST['password'])
 </head>
 <body>
 	<?php 
-		//Aquí va la validación dependiendo de si está loggeado o no el usuario... aquí pondrás tu condición.
+
+	if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2)){
 		include('login.html');
-		//include('logged.php');
+	}
+	elseif((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] == 1)){
+		include('loggedAdmin.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
+	}
+	else{
+		include('logged.php');
+		include('backend/mysql.php');
+		$mysql = new mysql();
+		include('backend/switch.php');
+	}
 	?>
 	<!-- <center><IMG SRC="img/shell.png" WIDTH="178" HEIGHT="180"></center> -->
 	<section class="panel-success webForm">
@@ -52,11 +65,13 @@ if(isset($_POST['username']) && isset($_POST['password'])
 				<input type="password" placeholder="Password" class="form-control" required name="password" id="password">
 				<input type="password" placeholder="Confirm Password" name="password2" class="form-control" id="confpass"
 					   onchange="validate(this);" required>
-				<input type="text" placeholder="Register code" name="clave" class="form-control" required pattern="[A-Z0-9]{10}"
-					   title="Please enter a valid serial number." name="serial">
+				<input type="text" placeholder="Register code" name="clave" class="form-control" required pattern="[A-Z0-9]{8}"
+					   title="Please enter a valid serial number.">
 			</div>
 			<button type="submit" class="btn btn-primary" id="register">Register</button>
 		</form>
+	<?php echo $msg['msg']; ?>
+
 		<script>
 			function validate(input){
 				if(input.value != $('#password').val()){

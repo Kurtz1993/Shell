@@ -6,7 +6,10 @@ class mysql{
 var $dbCon;
 
 	public function __construct(){
-		$this->dbCon = mysql_connect("localhost","root","");
+		$this->dbCon = mysql_connect("137.135.47.206","Kurtz","aiur");
+
+		if(!$this->dbCon)
+			$this->show_error();
 	}
 	//$link = mysql_connect("ip de localhost","usuario","password");
 	//mysql_select_db("nombre de base de datos",$link);
@@ -73,7 +76,7 @@ var $dbCon;
 	      
 	      if(intval($datos[0]['idUsuario'])== 1){ 
 	        $_SESSION['id'] = 1;
-	        header('location:../administrador.php');  //redirecciono
+	        header('location:../admin.php');  //redirecciono
 	        exit;
 	      }
 	      else{ 
@@ -134,7 +137,7 @@ var $dbCon;
 				else{	
 
 					if($password == $password2){		//reviso que las 2 passwords seleccionas por el usuario, sean iguales
-						$consult = "SELECT clave, id FROM usuarios WHERE clave = '$clave'";		//consulta pa saber si existe la clave ingresada por el usuario
+						$consult = "SELECT clave, idUsuario FROM usuarios WHERE clave = '$clave'";		//consulta pa saber si existe la clave ingresada por el usuario
 						$result = $this->query_assoc($consult);
 
 						if(count($result) > 0){
@@ -143,14 +146,16 @@ var $dbCon;
 							// echo var_dump($msg);
 							// exit;
 
-							$id = intval($result[0]['id']);
+							$id = intval($result[0]['idUsuario']);
 							$consult="UPDATE usuarios SET nickname = '$usuario', 
-														  password = '$password',
-														  WHERE id = '$id'";
+														  password = '$password'
+														  WHERE idUsuario = $id";
 							$this->query($consult);
+							
 
-							$consult="INSERT INTO clientes (corporation, tel, correo) 
-												  values ('$corporation', '$phone', '$email')"
+							$consult2="INSERT INTO clientes (idUsuario, corporation, tel, correo) 
+												  values ('$id', '$corporation', '$phone', '$email')";
+							$this->query($consult2);
 
 							return array('result' => true,
 										 'msg' => 'Su registro se ha completado satisfactoriamente'); 

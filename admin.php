@@ -1,4 +1,4 @@
-<?php /*
+<?php 
 include('backend/mysql.php');
 session_start();
 $mysql = new mysql();
@@ -23,7 +23,7 @@ if(isset($_POST['code'])){
 	$msg = $mysql->insert_clave($valor);
 	
 }
-$mysql->exit_conect()   //cierro la coneccion */
+$mysql->exit_conect()   //cierro la coneccion 
 ?>
 
 <!doctype html>
@@ -40,7 +40,7 @@ $mysql->exit_conect()   //cierro la coneccion */
 <body>
 	<?php 
 		//Aquí va la validación dependiendo de si está loggeado o no el usuario... aquí pondrás tu condición.
-		include('logged.php');
+		include('loggedAdmin.php');
 		//include('logged.php');
 	?>
 
