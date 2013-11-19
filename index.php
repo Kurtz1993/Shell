@@ -13,17 +13,12 @@
 	<?php
 	session_start();
 
-	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
+	if (isset($_SESSION["usuario"]) && isset($_SESSION["password"]))
+	{
 		include('logged.php');
-		include('backend/mysql.php');
+		include('resources/mysql.php');
 		$mysql = new mysql();
-		include('backend/switch.php');
-	}
-	elseif((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] == 1)){
-		include('loggedAdmin.php');
-		include('backend/mysql.php');
-		$mysql = new mysql();
-		include('backend/switch.php');
+		include('resources/switch.php');
 	}
 	else{
 		include('login.html');

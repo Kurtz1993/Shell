@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$(document).on('click', '.rad', function(event) {
 		//alert($(this).val());
 		$.ajax({
-			url: 'requests.php',
+			url: 'resources/requests.php',
 			type: 'post',
 			dataType: 'json',
 			data: {action: 'loadMap', id: $(this).val()},

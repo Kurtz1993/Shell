@@ -6,23 +6,20 @@ class mysql{
 var $dbCon;
 
 	public function __construct(){
-		$this->dbCon = mysql_connect("137.135.47.206","Kurtz","aiur");
+		$this->dbCon = mysql_connect("137.135.47.206","root","Lok'tar93");
 
 		if(!$this->dbCon)
 			$this->show_error();
 	}
-	//$link = mysql_connect("ip de localhost","usuario","password");
-	//mysql_select_db("nombre de base de datos",$link);
 	/* Datos de conexión a la base de datos remota:
 	 * Host: 137.135.47.206
-	 * User: Kurtz
-	 * Pass: aiur
+	 * User: root
+	 * Pass: Lok'tar93
 	 * DB: shell
 	*/
 
 	public function conect(){
 		mysql_select_db("shell",$this->dbCon);
-
 	}
 
 	public function query($consult){
@@ -63,12 +60,8 @@ var $dbCon;
 //funciones de manejo de datos
 
 	public function validar($usuario, $password){
-
-	  $consult = "SELECT * FROM usuarios WHERE nickname = '$usuario' and password = '$password'";    //asigno la sintaxis de la consulta a una variable
-	  
-	  $datos = $this->query_assoc($consult);
-
-
+		$consult = "SELECT * FROM usuarios WHERE nickname = '$usuario' and password = '$password'";    //asigno la sintaxis de la consulta a una variable	  
+		$datos = $this->query_assoc($consult);
 		if(count($datos)>0)   //verifico si el tamaño del vector es 0  (si es que existe un registro, siempre sera 0, ya que los registros no se repiten)
 		{
 	   	  $_SESSION['usuario'] = $usuario;  //asigno mis variables enviadas por el index, a las variables de sesion
@@ -92,9 +85,7 @@ var $dbCon;
 	}
 
 	public function insert_clave($valor){
-
 		$consult = "SELECT clave FROM usuarios WHERE clave = '$valor'";
-
 		$datos = $this->query_assoc($consult); //guardo en un vector los resultados de la consulta
 
 		if($datos != false){
@@ -123,62 +114,45 @@ var $dbCon;
 	}
 
 	public function registro($usuario, $password, $clave, $password2, $corporation, $email, $phone){ 
+ 		$consult = "SELECT nickname FROM usuarios WHERE nickname = '$usuario'";
+ 		$result = $this->query_assoc($consult);
+ 		
 
-	//	 if ($usuario!='' and $password!='' and $clave!='' and $password2!=''){		//valido campos vacios
-		 		$consult = "SELECT nickname FROM usuarios WHERE nickname = '$usuario'";
-		 		$result = $this->query_assoc($consult);
-		 		
+		if (count($result) > 0 ){	  
+			return array('result' => false,
+						 'msg' => 'Ese usuario ya ha sido registrado, 
+						  porfavor intente con uno diferente');    
+		}
+		else{	
+			if($password == $password2){		//reviso que las 2 passwords seleccionas por el usuario, sean iguales
+				$consult = "SELECT clave, idUsuario FROM usuarios WHERE clave = '$clave'";		//consulta pa saber si existe la clave ingresada por el usuario
+				$result = $this->query_assoc($consult);
 
-				if (count($result) > 0 ){	  
-					return array('result' => false,
-								 'msg' => 'Ese usuario ya ha sido registrado, 
-								  porfavor intente con uno diferente');    
+				if(count($result) > 0){
+					$id = intval($result[0]['idUsuario']);
+					$consult="UPDATE usuarios SET nickname = '$usuario', 
+												  password = '$password',
+												  corporation = '$corporation',
+												  tel = '$phone',
+												  correo = '$email'
+												  WHERE idUsuario = $id";
+					$this->query($consult);
+
+					return array('result' => true,
+								 'msg' => 'Su registro se ha completado satisfactoriamente'); 
+					echo'<meta http-equiv="refresh" content="2;URL=index.php"/> ';  
 				}
-				else{	
-
-					if($password == $password2){		//reviso que las 2 passwords seleccionas por el usuario, sean iguales
-						$consult = "SELECT clave, idUsuario FROM usuarios WHERE clave = '$clave'";		//consulta pa saber si existe la clave ingresada por el usuario
-						$result = $this->query_assoc($consult);
-
-						if(count($result) > 0){
-							
-							// $msg = $mysql->email($email, $usuario);
-							// echo var_dump($msg);
-							// exit;
-
-							$id = intval($result[0]['idUsuario']);
-							$consult="UPDATE usuarios SET nickname = '$usuario', 
-														  password = '$password'
-														  WHERE idUsuario = $id";
-							$this->query($consult);
-							
-
-							$consult2="INSERT INTO clientes (idUsuario, corporation, tel, correo) 
-												  values ('$id', '$corporation', '$phone', '$email')";
-							$this->query($consult2);
-
-							return array('result' => true,
-										 'msg' => 'Su registro se ha completado satisfactoriamente'); 
-							echo'<meta http-equiv="refresh" content="2;URL=index.php"/> ';  
-						}
-						else{
-							return array('result' => true,
-										 'msg' => 'Su clave de registro es incorrecta o no existe, verifique que sea la correcta,
-										 o pongase en contacto con su administrador'); 
-						}
-					}
-					else{
-						return array('result' => false,
-									 'msg' => 'Ambas contraseñas deben coincidir');
-					}
-
+				else{
+					return array('result' => true,
+								 'msg' => 'Su clave de registro es incorrecta o no existe, verifique que sea la correcta,
+								 o pongase en contacto con su administrador'); 
 				}
-							
-		// } 
-		// else{
-		// 	return array('result' => false,
-		// 				 'msg' => 'Falta completar alguno de los campos!'); 
-		// }	
+			}
+			else{
+				return array('result' => false,
+							 'msg' => 'Ambas contraseñas deben coincidir');
+			}
+		}
 	}
 
 	// private function mail($Emaildestino, $destinatario){

@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div class="perdido" align="center">
-		<img src="perdido.png">
+		<img src="img/perdido.png">
 		<a href="../index.php">INICIO</a>
 	</div>
 	<br/>

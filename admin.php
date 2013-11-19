@@ -1,20 +1,18 @@
 <?php 
-include('backend/mysql.php');
+include('resources/mysql.php');
 session_start();
 $mysql = new mysql();
 //comprobar correcto login ------------------------------------------------------------------------------------
 if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] != 1))
 {
-	header("location:backend/perdido.php");
+	header("Location:perdido.php");
 	exit;
 }
 //cerrar sesion -----------------------------------------------------------------------------------------------
-include('backend/switch.php');
-//manupular clave ----------------------------------------------------------------------------------------------
+include('resources/switch.php');
+//manipular clave ----------------------------------------------------------------------------------------------
 $mysql->conect();
-
 $msg = array('msg' => "");
-
 if(isset($_POST['code'])){
 
 	$valor = $_POST['code'];
@@ -37,9 +35,8 @@ $mysql->exit_conect()   //cierro la coneccion
 </head>
 <body>
 	<?php
-		include('loggedAdmin.php');
+		include('logged.php');
 	?>
-
 	<section class="panel-success webForm">
 		<h2 class="panel-heading">Administrador</h2>
 		<form action="admin.php" method="post" name="codeGen">
@@ -55,7 +52,6 @@ $mysql->exit_conect()   //cierro la coneccion
 				</div>
 			</div>
 	</section>
-
 	<section id="usersTable">
 		<table>
 			<tr>
@@ -63,7 +59,6 @@ $mysql->exit_conect()   //cierro la coneccion
 			</tr>
 		</table>
 	</section>
-	
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">

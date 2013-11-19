@@ -1,28 +1,20 @@
 <?php
-include('backend/mysql.php');
-
-$mysql = new mysql();
-
-$msg = array('msg' => "");
-
-if(isset($_POST['username']) && isset($_POST['password']) 
-	&& isset($_POST['password2']) && isset($_POST['clave'])
-	&& isset($_POST['corporation']) && isset($_POST['email'])
-	&& isset($_POST['phone'])){
-	
+	include('resources/mysql.php');
 	$mysql = new mysql();
-
-	$mysql->conect();	
-
-	$msg = $mysql->registro($_POST['username'], $_POST['password'], 
-							$_POST['clave'], $_POST['password2'],
-							$_POST['corporation'], $_POST['email'],
-							$_POST['phone']);
-
-	$mysql->exit_conect();
-}
+	$msg = array('msg' => "");
+	if(isset($_POST['username']) && isset($_POST['password']) 
+		&& isset($_POST['password2']) && isset($_POST['clave'])
+		&& isset($_POST['corporation']) && isset($_POST['email'])
+		&& isset($_POST['phone'])){
+		$mysql = new mysql();
+		$mysql->conect();	
+		$msg = $mysql->registro($_POST['username'], $_POST['password'], 
+								$_POST['clave'], $_POST['password2'],
+								$_POST['corporation'], $_POST['email'],
+								$_POST['phone']);
+		$mysql->exit_conect();
+	}
 ?>
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -35,25 +27,18 @@ if(isset($_POST['username']) && isset($_POST['password'])
 </head>
 <body>
 	<?php
-	session_start();
-
-	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
-		include('logged.php');
-		include('backend/mysql.php');
-		$mysql = new mysql();
-		include('backend/switch.php');
-	}
-	elseif((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] == 1)){
-		include('loggedAdmin.php');
-		include('backend/mysql.php');
-		$mysql = new mysql();
-		include('backend/switch.php');
-	}
-	else{
-		include('login.html');
-	}	
+		session_start();
+		if (isset($_SESSION["usuario"]) && isset($_SESSION["password"]))
+		{
+			include('logged.php');
+			include('resources/mysql.php');
+			$mysql = new mysql();
+			include('resources/switch.php');
+		}
+		else{
+			include('login.html');
+		}
 	?>
-	<!-- <center><IMG SRC="img/shell.png" WIDTH="178" HEIGHT="180"></center> -->
 	<section class="panel-success webForm">
 		<h2 class="panel-heading">Registration</h2>
 		<form action="register.php" method="post" id="newUserForm">
@@ -70,9 +55,8 @@ if(isset($_POST['username']) && isset($_POST['password'])
 					   title="Please enter a valid serial number.">
 			</div>
 			<button type="submit" class="btn btn-primary" id="register">Register</button>
+			<div id="resultMsg"><?php echo $msg['msg']; ?></div>
 		</form>
-	<?php echo $msg['msg']; ?>
-
 		<script>
 			function validate(input){
 				if(input.value != $('#password').val()){
