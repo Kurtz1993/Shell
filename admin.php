@@ -19,7 +19,7 @@ if(isset($_POST['code'])){
 	$msg = $mysql->insert_clave($valor);
 	
 }
-$mysql->exit_conect()   //cierro la coneccion 
+$mysql->exit_conect();   //cierro la coneccion 
 ?>
 
 <!doctype html>

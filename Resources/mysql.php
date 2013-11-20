@@ -4,13 +4,6 @@ require('phpmailer.php');
 class mysql{
 
 var $dbCon;
-
-	public function __construct(){
-		$this->dbCon = mysqli_connect("137.135.47.206","root","Lok'tar93");
-
-		if(!$this->dbCon)
-			$this->show_error();
-	}
 	/* Datos de conexión a la base de datos remota:
 	 * Host: 137.135.47.206
 	 * User: root
@@ -19,11 +12,14 @@ var $dbCon;
 	*/
 
 	public function conect(){
-		mysqli_select_db("shell",$this->dbCon);
+		$this->dbCon = new mysqli('137.135.47.206', 'root', "Lok'tar93", 'shell');
+
+		if(!$this->dbCon)
+			echo $this->show_error();
 	}
 
 	public function query($consult){
-		$query = mysqli_query($consult, $this->dbCon);
+		$query = $this->dbCon->query($consult);
 		if(!$query){
 			$this->show_error();
 		}
@@ -33,16 +29,13 @@ var $dbCon;
 	}
 
 	private function show_error(){
-		die("ERROR: ".mysqli_connect_error());
+		return $this->dbCon->connect_error;
 	}
 
 	public function query_assoc($consult){
-		$result = $this->query($consult);
 		$vec = array();
-		while($fila = mysqli_fetch_assoc($result)){
-			$vec[] = $fila;
-			//echo var_dump($vec);
-			//exit;
+		if($result = $this->query($consult)){
+			while($fila = $result->fetch_assoc()){ $vec[] = $fila; }
 		}
 		return $vec;
 	}
@@ -53,7 +46,7 @@ var $dbCon;
 
 	public function destroy(){
 		session_destroy();
-		header("location:index.php");
+		header("Location:index.php");
 	}
 
 
@@ -110,7 +103,7 @@ var $dbCon;
 	}
 
 	public function obtenerId(){
-		return mysqli_insert_id();
+		return $this->dbCon->insert_id;
 	}
 
 	public function registro($usuario, $password, $clave, $password2, $corporation, $email, $phone){ 
