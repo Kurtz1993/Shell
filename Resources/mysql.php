@@ -60,14 +60,14 @@ var $dbCon;
 	   	  $_SESSION['usuario'] = $usuario;  //asigno mis variables enviadas por el index, a las variables de sesion
 	      $_SESSION['password'] = $password;
 	      
-	      if(intval($datos[0]['idUsuario'])== 1){ 
+	      if(intval($datos[0]['idUsuario']) == 1){ 
 	        $_SESSION['id'] = 1;
-	        header('Location:admin.php');  //redirecciono
+	        header('Location:index.php');  //redirecciono
 	        exit;
 	      }
 	      else{ 
 	        $_SESSION['id'] = 2;
-	        header('Location:table.php');  //redirecciono
+	        header('Location:index.php');  //redirecciono
 	        exit;
 	      }
 	 	}
