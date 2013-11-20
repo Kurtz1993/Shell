@@ -4,12 +4,27 @@
 			<a href="index.php" class="navbar-brand" id="startPage">SHELL SYSTEMS</a>
 			<a href="register.php" class="navbar-brand" id="registerPage">Register</a>
         </div>
-        <div class="navbar-collapse collapse" id="loginNav">
-			<form class="navbar-form navbar-right" action="valida.php" method="post">
-				<div class="form-group"><input type="text" class="form-control" placeholder="Username" name="usuario" required></div>
-				<div class="form-group"><input type="password" class="form-control" placeholder="Password" name="password" required></div>
-				<div class="form-group"><input type="submit" class="btn btn-primary" value="Sign In"></div>
-			</form>
+        <div class="navbar-collapse collapse navbar-form navbar-right" id="loginNav">
+        	<button id="showLoginForm" class="btn btn-primary">Login</button>
 		</div>
       </div>
 </nav>
+<div id="loginForm" class="panel-success">
+	<div id="userInfo">Login</div>
+	<form id="loginForm" action="valida.php" method="post">
+		<input type="text" class="form-control" placeholder="Username" name="usuario" required autofocus>
+		<input type="password" class="form-control" placeholder="Password" name="password" required>
+		<button id="loginBtn" type="submit" class="btn btn-primary">Login</button>
+	</form>
+</div>
+<script>$(document).ready(function() {
+	var displayed = false;
+	$(document).on('click', '#showLoginForm', function() {
+		if(!displayed) {$('#loginForm').slideDown('1200'); displayed = true;}
+		else{$('#loginForm').slideUp('1200'); displayed = false;}
+		
+	});
+	$(document).on('click', '#content', function(event) {
+		if(displayed){$('#loginForm').slideUp('1200'); displayed=false;}
+	});
+});</script>

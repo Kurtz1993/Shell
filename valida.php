@@ -6,5 +6,5 @@
   	$usuario = $_POST['usuario'];
   	$password = $_POST['password'];
   	$mysql->validar($usuario, $password);
-	$mysql->exit_conect();   //Cierre de conexión.
+  	$mysql->exit_conect();   //Cierre de conexión.
 ?>

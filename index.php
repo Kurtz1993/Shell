@@ -11,19 +11,21 @@
 </head>
 <body>
 	<?php
-	session_start();
-	if (isset($_SESSION["usuario"]) && isset($_SESSION["password"]))
-	{
-		include('logged.php');
-		include('resources/mysql.php');
-		$mysql = new mysql();
-		include('resources/switch.php');
-	}
-	else{
-		include('login.html');
-	}	
+		session_start();
+		if (isset($_SESSION["usuario"]) && isset($_SESSION["password"]))
+		{
+			include('logged.php');
+			include('resources/mysql.php');
+			$mysql = new mysql();
+			include('resources/switch.php');
+		}
+		else{
+			include('login.html');
+		}	
 	?>
-	<center><img src="img/shell.png" id="shellLogo"></center>
+	<section id="content">
+		<center><img src="img/shell.png" id="shellLogo"></center>
+	</section>
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>¿Eestas perdido?</title>
+	<title>¿Estás perdido?</title>
 </head>
 <body>
 	<div class="perdido" align="center">

@@ -12,8 +12,8 @@ var $dbCon;
 	*/
 
 	public function conect(){
-		//$this->dbCon = new mysqli('137.135.47.206', 'root', "Lok'tar93", 'shell');
-		$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
+		$this->dbCon = new mysqli('137.135.47.206', 'root', "Lok'tar93", 'shell');
+		//$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
 		if(!$this->dbCon)
 			echo $this->show_error();
 	}
@@ -59,7 +59,6 @@ var $dbCon;
 		{
 	   	  $_SESSION['usuario'] = $usuario;  //asigno mis variables enviadas por el index, a las variables de sesion
 	      $_SESSION['password'] = $password;
-	      
 	      if(intval($datos[0]['idUsuario']) == 1){ 
 	        $_SESSION['id'] = 1;
 	        header('Location:index.php');  //redirecciono

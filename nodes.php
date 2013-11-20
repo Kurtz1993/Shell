@@ -23,21 +23,23 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 </head>
 <body>
-	<?php
-	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
-		include('logged.php');
-		include('resources/mysql.php');
-		$mysql = new mysql();
-		include('resources/switch.php');
-	}
-	else{
-		include('login.html');
-	}	
-	?>
+	<section id="content">
+		<?php
+		if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
+			include('logged.php');
+			include('resources/mysql.php');
+			$mysql = new mysql();
+			include('resources/switch.php');
+		}
+		else{
+			include('login.html');
+		}	
+		?>
 
-	<div id="nodes"><!-- Fill with all the nodes that the user has --></div>
-	<div id="map"><!-- Fill with device location --></div>
-	<div id="tableData"><!-- Fill with the device data --></div>
+		<div id="nodes"><!-- Fill with all the nodes that the user has --></div>
+		<div id="map"><!-- Fill with device location --></div>
+		<div id="tableData"><!-- Fill with the device data --></div>
+	</section>
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">

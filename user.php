@@ -14,8 +14,8 @@
     <div class="container">
       <div class="navbar-header">
         <a href="index.php" class="navbar-brand" id="startPage">SHELL SYSTEMS</a>
-        <a href="table.php" class="navbar-brand" id="nodesPage">Active Nodes</a>
-        <a href="table.php" class="navbar-brand" id="userPage">User Profile</a>
+        <a href="nodes.php" class="navbar-brand" id="nodesPage">Active Nodes</a>
+        <a href="user.php" class="navbar-brand" id="userPage">User Profile</a>
       </div>
       <div class="navbar-collapse collapse navbar-right" id="loginNav">
         <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
@@ -23,11 +23,14 @@
       </div>
     </div>
   </nav>
-  <section id="userInfo">
-    <form action="">
-      <input type="submit">
-    </form>
-  </section>
+  <div id="userInfo">User information</div>
+  <form class="panel-success">
+    <div id="user">
+      <input type="text" class="form-control">
+      <input type="text" class="form-control">
+      <input type="text" class="form-control">
+    </div>
+  </form>
   <footer class="navbar navbar-inverse navbar-bottom">
     <div class="container">
       <div class="navbar-header">
