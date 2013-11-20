@@ -4,6 +4,7 @@
   			<a href="index.php" class="navbar-brand" id="startPage">SHELL SYSTEMS</a>
         <?php if($_SESSION['id'] != 1): ?>
   			<a href="table.php" class="navbar-brand" id="nodesPage">Active Nodes</a>
+        <a href="user.php" class="navbar-brand" id="userPage">User Profile</a>
         <?php else: ?>
         <a href="admin.php" class="navbar-brand" id="adminPage">Generate Codes</a>
         <a href="admintable.php" class="navbar-brand" id="adminTablesPage">Tables</a>

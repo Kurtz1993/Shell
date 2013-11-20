@@ -36,23 +36,16 @@ $mysql->exit_conect();   //cierro la coneccion
 <body>
 	<?php include('logged.php'); ?>
 	<section class="panel-success webForm">
-		<h2 class="panel-heading">Administrador</h2>
+		<h2 class="panel-heading">Administrator</h2>
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
-				Generar código: <input id="code" type="text" class="form-control-static" name="code"><br><br>
-				<input type="button" value="Generar código" onclick="Clave();">
-				<input type="submit" value="Guardar clave">
+				Generate code: <input id="code" type="text" class="form-control-static" name="code"><br><br>
+				<input type="button" value="Generate code" onclick="Clave();">
+				<input type="submit" value="Store key">
 				<div id="resultMsg">
 					<?php if(isset($msg)) echo $msg['msg'];	?>
 				</div>
 			</div>
-	</section>
-	<section id="usersTable">
-		<table>
-			<tr>
-				<td></td>
-			</tr>
-		</table>
 	</section>
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
