@@ -33,7 +33,7 @@ var $dbCon;
 	}
 
 	private function show_error(){
-		die("ERROR: ".mysqli_error());
+		die("ERROR: ".mysqli_connect_error());
 	}
 
 	public function query_assoc($consult){
