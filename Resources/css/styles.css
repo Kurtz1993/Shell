@@ -11,6 +11,7 @@ li#loggedUser{ color: #FFFFFF; }
 section.webForm{ 
 	margin-right: auto; 
 	margin-left: auto;
+	margin-bottom: 6%;
 	text-align: center; 
 	width: 30%; 
 	-webkit-border-radius: 20px;
@@ -33,7 +34,7 @@ h2.panel-heading{
 }
 div#userData{ padding: 0% 13%; }
 div#userData > input{ margin-top: 5%; }
-button#register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131; }
+button.register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131; }
 button#loginBtn{ font-size: 1.2em; margin: 5% 0%; padding: 3% 10%; background-color: #313131; }
 div#adminPanel{ padding: 3%; }
 div#map{ height: 300px; width: 40%; border: 1px solid black; margin: 25px auto; }
@@ -70,3 +71,34 @@ div#loginForm > div{
 }
 form#loginForm{ padding: 0 10%; }
 form#loginForm > input { margin: 7% auto 0 auto; width: 95%; }
+div#userForm{
+	width: 25%; 
+	margin-top: 5%;
+	margin-left: 6%;
+	text-align: center;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-o-border-radius: 11px;
+	-ms-border-radius: 11px;
+	border-radius: 11px;
+	-webkit-box-shadow: 1px 1px 25px;
+	-moz-box-shadow: 1px 1px 25px;
+	-o-box-shadow: 1px 1px 25px;
+	-ms-box-shadow: 1px 1px 25px;
+	box-shadow: 1px 1px 25px;
+	float: left;
+}
+form#editUserInfo > button{font-size: 1.4em; margin: 0 0 5% 0; padding: 0.5% 3%; background-color: #313131;}
+div#user > input{margin-bottom: 20px; margin-left: auto; margin-right: auto;}
+div.userFormTitle{
+	-webkit-border-radius: 11px 11px 0 0;
+	-moz-border-radius: 11px 11px 0 0;
+	-o-border-radius: 11px 11px 0 0;
+	-ms-border-radius: 11px 11px 0 0;
+	border-radius: 11px 11px 0 0;
+	text-align: center; width: auto;
+	background-color: #061424; 
+	color: white;
+	font-size: 2em;
+	margin-bottom: 15px;
+}

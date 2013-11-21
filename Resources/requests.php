@@ -16,5 +16,11 @@
 				             WHERE idDispositivo = $_POST[id] -- ";
 				echo json_encode($mysql->query_assoc($getNodeCoord));
 			break;
+		case 'loadUserInfo':
+			$getUserData = "SELECT corporation, tel, correo
+							FROM usuarios
+							WHERE idUsuario = $_POST[id] -- ";
+			echo json_encode($mysql->query_assoc($getUserData));
+			break;
 	}
  ?>

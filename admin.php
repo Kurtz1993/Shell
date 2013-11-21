@@ -36,12 +36,24 @@ $mysql->exit_conect();   //cierro la coneccion
 <body>
 	<?php include('logged.php'); ?>
 	<section class="panel-success webForm">
-		<h2 class="panel-heading">Administrator</h2>
+		<h2 class="panel-heading">User codes</h2>
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
-				Generate code: <input id="code" type="text" class="form-control-static" name="code"><br><br>
-				<input type="button" value="Generate code" onclick="Clave();">
-				<input type="submit" value="Store key">
+				Generated code: <input id="code" type="text" class="form-control-static" name="code"><br><br>
+				<input type="button" value="Generate code" onclick="Clave();" class="btn btn-primary">
+				<input type="submit" value="Store key" class="btn btn-primary">
+				<div id="resultMsg">
+					<?php if(isset($msg)) echo $msg['msg'];	?>
+				</div>
+			</div>
+	</section>
+	<section class="panel-success webForm">
+		<h2 class="panel-heading">Nodes Serial Numbers</h2>
+		<form action="admin.php" method="post" name="codeGen">
+			<div id="adminPanel">
+				Generated Serial: <input id="code" type="text" class="form-control-static" name="serial"><br><br>
+				<input type="button" value="Generate serial" class="btn btn-primary" onclick="Clave();">
+				<input type="submit" value="Store serial" class="btn btn-primary">
 				<div id="resultMsg">
 					<?php if(isset($msg)) echo $msg['msg'];	?>
 				</div>
@@ -51,6 +63,13 @@ $mysql->exit_conect();   //cierro la coneccion
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+			</div>
+			<div class="navbar-collapse collapse navbar-right">
+				<?php if($_SESSION['id'] == 1): ?>
+  				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+		        <?php else: ?>
+		        <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
+         		<?php endif; ?>
 			</div>
 		</div>
 	</footer>

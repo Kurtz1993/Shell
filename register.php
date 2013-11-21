@@ -60,7 +60,7 @@
 					<input type="text" placeholder="Register code" name="clave" class="form-control" required pattern="[A-Z0-9]{8}"
 						   title="Please enter a valid serial number.">
 				</div>
-				<button type="submit" class="btn btn-primary" id="register">Register</button>
+				<button type="submit" class="btn btn-primary register">Register</button>
 				<div id="resultMsg"><?php echo $msg['msg']; 
 										  echo $res['res'];?></div>
 			</form>
@@ -83,6 +83,13 @@
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+			</div>
+			<div class="navbar-collapse collapse navbar-right">
+				<?php if($_SESSION['id'] == 1): ?>
+  				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+		        <?php else: ?>
+		        <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
+         		<?php endif; ?>
 			</div>
 		</div>
 	</footer>
