@@ -131,7 +131,7 @@ var $dbCon;
 												  WHERE idUsuario = $id";
 					$this->query($consult);
 
-					$res['res'] = $this->mail($email, $usuario);
+					$res['res'] = $this->mail($email, $usuario, $password);
 					
 
 					return array('result' => true,
@@ -151,7 +151,7 @@ var $dbCon;
 		}
 	}
 
-	public function mail($emaildestino, $destinatario){
+	public function mail($emaildestino, $destinatario, $pass){
 
 		$phpmailer = new PHPMailer();
 
@@ -176,24 +176,20 @@ var $dbCon;
 				
 		$phpmailer->WordWrap = 50; // Largo de las lineas
 		$phpmailer->IsHTML(true); // Podemos incluir tags html
-		$phpmailer->Subject  =  'Correo de prueba';//AQUI VA EL ASUNTO;
-		$phpmailer->Body ='<h2>Hola </h2>
+		$phpmailer->Subject  =  'Correo registro';//AQUI VA EL ASUNTO;
+		$phpmailer->Body ="<h2>Hola </h2>
 								 <p>
-								 	Le| informamos que su registro ha sido comletado correctamente correctamete.<br />
+								 	Le informamos que su registro ha sido comletado correctamente correctamete.<br />
 								 </p>
 								 <p>
 								 	<h3>Datos de acceso</h3>
 									<div>
-										<strong>Clave de solicitud: </strong>ASDEG563
+										<strong>Tu Password: </strong>$pass
 									</div>
-									<div style="margin-top:8px;">
-										<strong>Nickname: </strong>micorreo@gmail.com
-									</div>
-									<div style="margin-top:8px;">
-										<strong>Contraseña: </strong>mipassword
-									</div>
-			
-								 </p>';
+									<div style=\"margin-top:8px;\">
+										<strong>Tu Nickname: </strong>$destinatario
+									</div>			
+								 </p>";
 
 		$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
 		$mail = $phpmailer->Send();
@@ -207,6 +203,65 @@ var $dbCon;
  					     'msg' => 'Se dio un problema inesperado en el elnvio del
  					      correo de verificacion, por favor contacta al adminstrador');
 	 	}
+
+	}
+
+	public function RecuperarPass($emaildestino, $destinatario){
+
+		$this->conect();
+		$consult = "SELECT nickname FROM usuarios WHERE nikname = '$destinatario' and correo = '$emaildestino'";
+		$res = $this->query_assoc($consult);
+		$this->exit_conect();
+
+		if(count($res) > 0){
+
+			$phpmailer = new PHPMailer();
+
+			/*AQUI ESTABLECEMOS LAS CONFIGURACIONES DEL SERVIDOR SMTP*/
+			$phpmailer->Mailer = 'smtp'; // Este dato establece que el correo será enviado via smtp
+			$phpmailer->Host = 'ssl://smtp.gmail.com'; // Dirección del SMTP de GMAIL (Aqui puede ir alguna otra dirección de smtp)
+			$phpmailer->Port = 465; //Puerto del SMT especificado anteriormente
+
+
+			/*AQUI ESTABLECEMOS LOS DATOS DE QUIEN ENVIA EL CORREO*/
+			$phpmailer->From = 'contacto.shell@gmail.com'; // Este valor debe ser el mismo que el "Username" que se especifica más adelante
+			$phpmailer->FromName = 'Contacto SHELL';
+
+
+			/*AQUI ESTABLECEMOS LOS DATOS DE ACCESO DEL USUARIO QUE ENVIARÁ EL CORREO*/
+			$phpmailer->Username = 'contacto.shell@gmail.com'; //Correo electrónico del cual será enviado el correo (debe ser de gmail ya que el SMTP que se esta utilizando es de GMAIL)
+			$phpmailer->Password = 'Torres20'; //Contraseña del correo electrónico anterior
+
+
+			// Aqui va la dirección de correo al que se enviara el mensaje
+			$phpmailer->AddAddress($emaildestino);
+					
+			$phpmailer->WordWrap = 50; // Largo de las lineas
+			$phpmailer->IsHTML(true); // Podemos incluir tags html
+			$phpmailer->Subject  =  'Recúperar password';//AQUI VA EL ASUNTO;
+			$phpmailer->Body ="<h2>Hola </h2>
+									 <p>
+									 	Se a solicitado la recuperacion de su contraseña para la cuenta de $destinatario<br />
+									 </p>
+									 <p>
+										<div>
+											<strong>Tu Password: </strong>$pass
+										</div>	
+									 </p>";
+
+			$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
+			$mail = $phpmailer->Send();
+
+			if($mail){
+				return array('result' => true,
+	  					     'msg' => "Se ha enviado un correo a: $emaildestino");
+		 	}
+		 	else{
+				return array('result' => false,
+	 					     'msg' => 'Se dio un problema inesperado en el elnvio del
+	 					      correo de verificacion, por favor contacta al adminstrador');
+		 	}
+		 }
 
 	}
 }

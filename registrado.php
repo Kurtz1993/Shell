@@ -7,7 +7,7 @@ $msg = array('msg' => "");
 
 if(isset($_POST['mail'])){
 
-$msg = $mysql->mail($_POST['mail'], $_POST['usr']);
+$msg = $mysql->RecuperarPass($_POST['mail'], $_POST['usr']);
 }
 ?>
 
