@@ -18,7 +18,6 @@
         <a href="user.php" class="navbar-brand" id="userPage">User Profile</a>
       </div>
       <div class="navbar-collapse collapse navbar-right" id="loginNav">
-        <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
         <a href="index.php?action=destroy" class="navbar-brand navbar-col">Sign out</a>
       </div>
     </div>

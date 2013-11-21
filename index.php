@@ -32,11 +32,13 @@
 				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
-				<?php if($_SESSION['id'] == 1): ?>
+				<?php if(!$_SESSION): ?>
+				<a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Guest!</a>
+				<?php elseif($_SESSION['id'] == 1): ?>
   				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
 		        <?php else: ?>
 		        <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
-         		<?php endif; ?>
+		        <?php endif; ?>
 			</div>
 		</div>
 	</footer>
