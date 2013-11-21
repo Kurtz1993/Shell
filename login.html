@@ -9,7 +9,7 @@
 		</div>
       </div>
 </nav>
-<div id="loginForm" class="panel-success">
+<div class="loginForm" class="panel-success">
 	<div id="userInfo">Login</div>
 	<form id="loginForm" action="valida.php" method="post">
 		<input type="text" class="form-control" placeholder="Username" name="usuario" required autofocus>
@@ -20,11 +20,10 @@
 <script>$(document).ready(function() {
 	var displayed = false;
 	$(document).on('click', '#showLoginForm', function() {
-		if(!displayed) {$('#loginForm').slideDown('1200'); displayed = true;}
+		if(!displayed) {$('.loginForm').slideDown('1200'); displayed = true;}
 		else{$('#loginForm').slideUp('1200'); displayed = false;}
-		
 	});
 	$(document).on('click', '#content', function(event) {
-		if(displayed){$('#loginForm').slideUp('1200'); displayed=false;}
+		if(displayed){$('.loginForm').slideUp('1200'); displayed=false;}
 	});
 });</script>

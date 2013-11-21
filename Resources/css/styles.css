@@ -35,7 +35,7 @@ h2.panel-heading{
 div#userData{ padding: 0% 13%; }
 div#userData > input{ margin-top: 5%; }
 button.register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131; }
-button#loginBtn{ font-size: 1.2em; margin: 5% 0%; padding: 3% 10%; background-color: #313131; }
+button#loginBtn, button#confirmBtn{ font-size: 1.2em; margin: 5% 0%; padding: 3% 10%; background-color: #313131; }
 div#adminPanel{ padding: 3%; }
 div#map{ height: 300px; width: 40%; border: 1px solid black; margin: 25px auto; }
 div#nodes, div#userInfo{ text-align: center; width: auto; background-color: #061424; color: white; }
@@ -43,7 +43,7 @@ div#userInfo{ font-size: 2em; }
 input.rad{ margin: 10px 0 10px 4%; }
 span.radText{ font-size: 1.15em; margin-left:0.5%; }
 div#user{padding: 1% 15%;}
-div#loginForm{
+div.loginForm{
 	display: none;
 	margin-left: 40%;
 	margin-top: 10%;
@@ -62,7 +62,7 @@ div#loginForm{
 	position: fixed;
 	background-color: #a0a0a0;
 }
-div#loginForm > div{
+div.loginForm > div{
 	-webkit-border-radius: 10px 10px 0 0;
 	-moz-border-radius: 10px 10px 0 0;
 	-o-border-radius: 10px 10px 0 0;
@@ -73,7 +73,7 @@ form#loginForm{ padding: 0 10%; }
 form#loginForm > input { margin: 7% auto 0 auto; width: 95%; }
 div#userForm{
 	width: 25%; 
-	margin-top: 5%;
+	margin-top: 1%;
 	margin-left: 6%;
 	text-align: center;
 	-webkit-border-radius: 11px;
@@ -102,3 +102,11 @@ div.userFormTitle{
 	font-size: 2em;
 	margin-bottom: 15px;
 }
+table#tableNodesInfo{margin: 0 auto 5% auto;}
+td{border: 1px solid black; padding: 5px;}
+a.linkNodes{color: #568; font-size: 1.2em;}
+a.linkNodes:hover{color: white; text-decoration: underline;}
+a#dismissNotif{color: white; font-size: 1.12em;}
+div#nodesTable{margin-top: 4%;}
+div#nodesMap{height:200px; border: 1px solid black; margin: 5%; width: 90%;}
+div#notifier{font-size: 1.15em; margin: 1% 3%; padding:0.5%;}
