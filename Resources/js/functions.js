@@ -138,4 +138,49 @@ function loadRadioButtons(){
 		$('div#nodes').html(radiobuttons);
 	}
 	});
+
+	$(document).ready(function() {
+		table();
+	});
+
+	function table(){
+		alert('vas bien');
+	$.ajax({
+		url : '../admintable.php',		//a donde se enviara la peticion
+		type : 'get', 			//tipo de datos que se enviaran al servidor ('post', 'get')
+		data: {action: "table"},	//parametros que se enviaran
+		dataType : 'JSON',			//tipos de datos que regresara la consulta ('html', 'json')
+		success: function(result){		//evento que se ejecutara si la resúesta es satisfactoria 
+					var table = '<table id="data" border="1">' +
+						'<tr id="tabHead">' +
+							'<th>Id</td>' +
+							'<th>Nickname</td>' +
+							'<th>Password</td>' +
+							'<th>Register code</td>' +
+							'<th>Corporatio</td>' +
+							'<th>Phone</td>' +
+							'<th>E-mail</td>' +
+							'<th>Opcciones</td>' +
+						'</tr>';
+			for (i = 0; i <= result.length - 1; i++) {
+				table += '<tr>';
+				table += 	'<td>' + result[i].idUsuario + '</td>';
+				table += 	'<td>' + result[i].nickname + '</td>';
+				table += 	'<td>' + result[i].password + '</td>';
+				table += 	'<td>' + result[i].clave + '</td>';
+				table += 	'<td>' + result[i].corporation + '</td>';
+				table += 	'<td>' + result[i].tel + '</td>';
+				table += 	'<td>' + result[i].correo + '</td>';
+				table += 	'<td> <a href="" id="' + result[i].idUsuario + '" class="editar">Eliminar </a>' +
+							'</td>';
+				table += '</tr>';
+			}
+			table += '</table>';
+			$('#table').html(table);
+		},
+		error: function(){
+			alert('la estas cagando tabla');
+		}
+	});
+}
 }
