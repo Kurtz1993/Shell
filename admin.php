@@ -40,7 +40,7 @@ $mysql->exit_conect();   //cierro la coneccion
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
 				Generated code: <input id="code" type="text" class="form-control-static" name="code"><br><br>
-				<input type="button" value="Generate code" onclick="Clave();" class="btn btn-primary">
+				<input type="button" value="Generate code" onclick="UserCode();" class="btn btn-primary">
 				<input type="submit" value="Store key" class="btn btn-primary">
 				<div id="resultMsg">
 					<?php if(isset($msg)) echo $msg['msg'];	?>
@@ -52,7 +52,7 @@ $mysql->exit_conect();   //cierro la coneccion
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
 				Generated Serial: <input id="code" type="text" class="form-control-static" name="serial"><br><br>
-				<input type="button" value="Generate serial" class="btn btn-primary" onclick="Clave();">
+				<input type="button" value="Generate serial" class="btn btn-primary" onclick="SerialNumber();">
 				<input type="submit" value="Store serial" class="btn btn-primary">
 				<div id="resultMsg">
 					<?php if(isset($msg)) echo $msg['msg'];	?>

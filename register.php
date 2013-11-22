@@ -12,9 +12,12 @@
 		
 		$mysql = new mysql();
 		
+		$pass=sha1($_POST['password']);
+		$pass2=sha1($_POST['password2']);
+
 		$mysql->conect();	
-		$msg = $mysql->registro($_POST['username'], $_POST['password'], 
-								$_POST['clave'], $_POST['password2'],
+		$msg = $mysql->registro($_POST['username'], $pass, 
+								$_POST['clave'], $pass2,
 								$_POST['corporation'], $_POST['email'],
 								$_POST['phone']);
 		$mysql->exit_conect();
