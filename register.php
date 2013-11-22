@@ -19,7 +19,7 @@
 		$msg = $mysql->registro($_POST['username'], $pass, 
 								$_POST['clave'], $pass2,
 								$_POST['corporation'], $_POST['email'],
-								$_POST['phone']);
+								$_POST['phone'], $_POST['password']);
 		$mysql->exit_conect();
 	}
 ?>

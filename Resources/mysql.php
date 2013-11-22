@@ -105,7 +105,7 @@ var $dbCon;
 		return $this->dbCon->insert_id;
 	}
 
-	public function registro($usuario, $password, $clave, $password2, $corporation, $email, $phone){ 
+	public function registro($usuario, $password, $clave, $password2, $corporation, $email, $phone, $nocrypPass){ 
  		
  		$consult = "SELECT nickname FROM usuarios WHERE nickname = '$usuario'";
  		$result = $this->query_assoc($consult);
@@ -131,7 +131,7 @@ var $dbCon;
 												  WHERE idUsuario = $id";
 					$this->query($consult);
 
-					$res['res'] = $this->mail($email, $usuario, $password);
+					$res['res'] = $this->mail($email, $usuario, $nocrypPass);
 					
 
 					return array('result' => true,
