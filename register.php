@@ -88,7 +88,7 @@
 				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
-		    	<a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Guest!</a>
+		    	<a class="navbar-brand navbar-col" id="loggedUser">Welcome, Guest!</a>
 			</div>
 		</div>
 	</footer>

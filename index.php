@@ -33,7 +33,7 @@
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
 				<?php if(!$_SESSION): ?>
-				<a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Guest!</a>
+				<a class="navbar-brand navbar-col" id="loggedUser">Welcome, Guest!</a>
 				<?php elseif($_SESSION['id'] == 1): ?>
   				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
 		        <?php else: ?>
