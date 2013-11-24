@@ -21,14 +21,16 @@ function SerialNumber(){
 }
 
 function validate(input){
-	if(input.value != $('#password').val()){
-	input.setCustomValidity('Passwords do not match!');
-	$('#password').css('border', '1.8px solid red');
-	$('#rePassword').css('border', '1.8px solid red');
-	} else{
-	input.setCustomValidity('');
-	$('#password').css('border', '1.8px solid #09E017');
-	$('#rePassword').css('border', '1.8px solid #09E017');
+	if(input.value != '' && $('#password').val() != ''){
+		if(input.value != $('#password').val()){
+		input.setCustomValidity('Passwords do not match!');
+		$('#password').css('border', '1.8px solid red');
+		$('#rePassword').css('border', '1.8px solid red');
+		} else{
+		input.setCustomValidity('');
+		$('#password').css('border', '1.8px solid #09E017');
+		$('#rePassword').css('border', '1.8px solid #09E017');
+		}
 	}
 }
 
