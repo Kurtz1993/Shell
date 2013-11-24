@@ -4,7 +4,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('.loginForm').hide(500);
 	});
-	$(document).on('click', '.rad', function(event) {
+	$(document).on('click', 'input.rad', function(event) {
 		$.ajax({
 			url: 'resources/requests.php',
 			type: 'post',

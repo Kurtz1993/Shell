@@ -1,26 +1,50 @@
-<?php 
-include('Resources/mysql.php');
-session_start();
-
-$mysql = new mysql();
-
-include('resources/switch.php');
-
-
-
-?>
-
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-		<script src="Resources/js/jquery.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="stylesheet" href="Resources/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/css/styles.css">
+	<script src="Resources/js/jquery.js"></script>
 	<script src="Resources/js/functions.js"></script>
+	<script src="resources/js/adminScripts.js"></script>
 	<title>Document</title>
 </head>
 <body>
-	<div id="table">
-	</div>
+	<?php include('logged.php'); ?>
+	<div id="userInfo">Users information</div>
 
+	<div id="table" class="adminTable"></div>
+	<div id="userInfo">Nodes information</div>
+	<div id="adminNodesTable" class="adminTable"></div>
+	
+	<!-- Confirm deletion form -->
+
+	<div class="loginForm" class="panel-success">
+    <div id="userInfo">Confirm delete</div>
+    <form id="loginForm">
+    	<input type="hidden" id="userID">
+      	<input type="password" id="pswd" class="form-control" placeholder="Password" required autofocus>
+      	<button type="submit" id="confirmBtn" class="btn btn-primary">Confirm</button>
+    </form>
+    <div id="notifier"></div>
+    <a href="" id="dismissNotif">Dismiss</a>
+  	</div>
+
+  <!-- Footer -->
+
+  	<footer class="navbar navbar-inverse navbar-bottom">
+		<div class="container">
+			<div class="navbar-header">
+	            <a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+			</div>
+			<div class="navbar-collapse collapse navbar-right">
+  				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+			</div>
+		</div>
+	</footer>
+	<script> $('#adminTablesPage').css({ color: '#FFFFFF', background: '#383838' }); </script>
 </body>
 </html>

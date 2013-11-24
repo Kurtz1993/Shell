@@ -63,7 +63,7 @@
     <div id="nodesTable"></div>
     <div id="nodesMap"></div>
   </div>
-
+  <!-- Delete confirmation form -->
   <div class="loginForm" class="panel-success">
     <div id="userInfo">Confirm delete</div>
     <form id="loginForm">

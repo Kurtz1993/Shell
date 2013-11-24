@@ -122,6 +122,7 @@ function loadMap(latitude, longitude, location, sensor, name){
 	contactInfo.open(currentPosition.getMap(), currentPosition);
 	mapa.Markers.push(currentPosition);
 }
+
 function loadRadioButtons(){
 	$.ajax({
 		url: 'resources/requests.php',
@@ -138,49 +139,77 @@ function loadRadioButtons(){
 		$('div#nodes').html(radiobuttons);
 	}
 	});
+}
 
-	$(document).ready(function() {
-		table();
-	});
-
-	function table(){
-		alert('vas bien');
+function loadUsersTable(){
 	$.ajax({
-		url : '../admintable.php',		//a donde se enviara la peticion
-		type : 'get', 			//tipo de datos que se enviaran al servidor ('post', 'get')
-		data: {action: "table"},	//parametros que se enviaran
-		dataType : 'JSON',			//tipos de datos que regresara la consulta ('html', 'json')
-		success: function(result){		//evento que se ejecutara si la resúesta es satisfactoria 
+		url : 'resources/requests.php',
+		type : 'post',
+		data: {action: "loadUsersTable"},
+		dataType : 'JSON',
+		success: function(result){
 					var table = '<table id="data" border="1">' +
 						'<tr id="tabHead">' +
-							'<th>Id</td>' +
-							'<th>Nickname</td>' +
-							'<th>Password</td>' +
-							'<th>Register code</td>' +
-							'<th>Corporatio</td>' +
-							'<th>Phone</td>' +
-							'<th>E-mail</td>' +
-							'<th>Opcciones</td>' +
+							'<td class="tableHeading">Nickname</td>' +
+							'<td class="tableHeading">Password</td>' +
+							'<td class="tableHeading">Register code</td>' +
+							'<td class="tableHeading">Corporation</td>' +
+							'<td class="tableHeading">Phone</td>' +
+							'<td class="tableHeading">E-mail</td>' +
+							'<td class="tableHeading">Options</td>' +
 						'</tr>';
 			for (i = 0; i <= result.length - 1; i++) {
 				table += '<tr>';
-				table += 	'<td>' + result[i].idUsuario + '</td>';
 				table += 	'<td>' + result[i].nickname + '</td>';
 				table += 	'<td>' + result[i].password + '</td>';
 				table += 	'<td>' + result[i].clave + '</td>';
 				table += 	'<td>' + result[i].corporation + '</td>';
 				table += 	'<td>' + result[i].tel + '</td>';
 				table += 	'<td>' + result[i].correo + '</td>';
-				table += 	'<td> <a href="" id="' + result[i].idUsuario + '" class="editar">Eliminar </a>' +
+				table += 	'<td> <a href="" id="' + result[i].idUsuario + '" class="delete">Eliminar </a>' +
 							'</td>';
 				table += '</tr>';
 			}
 			table += '</table>';
 			$('#table').html(table);
-		},
-		error: function(){
-			alert('la estas cagando tabla');
 		}
 	});
 }
+
+function loadAllNodes(){
+	$.ajax({
+      url: 'resources/requests.php',
+      type: 'post',
+      dataType: 'json',
+      data: {action: 'loadAllNodes'},
+      success: function(nodeInfo){
+        var table = '<table id="tableNodesInfo">' +
+                      '<tr>' +
+                      '<td class="tableHeading">Device ID</td>' +
+                      '<td class="tableHeading">Device Owner</td>' +
+                      '<td class="tableHeading">Name</td>' +
+                      '<td class="tableHeading">Latitud</td>'+
+                      '<td class="tableHeading">Longitud</td>' +
+                      '<td class="tableHeading">Sensor Type</td>' +
+                      '<td class="tableHeading">Serial Number</td>'+
+                      '</tr>';
+        var sensor = "";
+        for(i=0; i<=nodeInfo.length -1; i++){
+          	if(nodeInfo[i].Sens == 1){sensor ="Temperature";}
+          	else if(nodeInfo[i].Sens == 2){sensor="Humidity"}
+          	else if(nodeInfo[i].Sens == 3){sensor="Luminosity"}
+          	table+= '<tr>';
+          	table+=   '<td>'+nodeInfo[i].ID+'</td>';
+          	table+=   '<td>'+nodeInfo[i].Owner+'</td>';
+			table+=   '<td>'+nodeInfo[i].Name+'</td>';
+			table+=   '<td>'+nodeInfo[i].Lat+'</td>';
+			table+=   '<td>'+nodeInfo[i].Longi+'</td>';
+			table+=   '<td>'+sensor+'</td>';
+			table+=   '<td>'+nodeInfo[i].SN+'</td>';
+          	table+= '</tr>';
+        }
+        table+='</table>';
+        $('#adminNodesTable').html(table);
+      }
+    });
 }
