@@ -77,7 +77,7 @@
 			(SELECT U.nickname FROM Usuarios U
 			WHERE U.idUsuario = D.idUsuario) AS Owner
 			FROM dispositivos D
-			Inner JOIN usuarios U
+			INNER JOIN usuarios U
 			ON U.idUsuario = D.idUsuario; -- ";
 			echo json_encode($mysql->query_assoc($getAllNodes));
 			break;
