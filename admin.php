@@ -5,7 +5,7 @@ $mysql = new mysql();
 //comprobar correcto login ------------------------------------------------------------------------------------
 if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] != 1))
 {
-	header("Location:perdido.php");
+	header("Location:lost.php");
 	exit;
 }
 //cerrar sesion -----------------------------------------------------------------------------------------------
@@ -65,12 +65,8 @@ $mysql->exit_conect();   //cierro la coneccion
 				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
-				<?php if($_SESSION['id'] == 1): ?>
   				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
-		        <?php else: ?>
-		        <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
-         		<?php endif; ?>
-			</div>
+  			</div>
 		</div>
 	</footer>
 	<script> $('#adminPage').css({ color: '#FFFFFF', background: '#383838' }); </script>
