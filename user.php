@@ -58,7 +58,7 @@
   <!-- Nodes information -->
   <div class="userForm panel-success">
     <div class="userFormTitle">Nodes</div>
-    <a href="" class="linkNodes">Add new node</a>
+    <a href="" class="linkNodes" id="addNode">Add new node</a>
     <div id="nodesTable"></div>
     <div id="nodesMap"></div>
   </div>

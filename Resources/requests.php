@@ -95,5 +95,14 @@
 			 WHERE idUsuario = $_POST[id]; -- ";
 			 $res = $mysql->query($updatePassword);
 			 break;
+		case 'newNode':
+			$lookForSN = "SELECT idDispositivo 
+						  FROM dispositivos
+						  WHERE serial = $_POST[sn]; -- ";
+			$res = $mysql->query_assoc($lookForSN);
+			if(sizeof($res)>0){
+				echo json_encode($res);
+			}
+			break;
 	}
  ?>
