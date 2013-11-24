@@ -2,7 +2,7 @@
 
 if (isset($_GET['action'])){
 	switch ($_GET['action']) {
-		case 'destroy':
+		case 'logout':
 			$mysql->destroy();
 			header('location:index.php');
 			break;

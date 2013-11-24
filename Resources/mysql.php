@@ -46,7 +46,7 @@ var $dbCon;
 
 	public function destroy(){
 		session_destroy();
-		header("Location:index.php");
+		header("Location: /shell");
 	}
 
 
@@ -179,16 +179,16 @@ var $dbCon;
 		$phpmailer->Subject  =  'Correo registro';//AQUI VA EL ASUNTO;
 		$phpmailer->Body ="<h2>Hola </h2>
 								 <p>
-								 	Le informamos que su registro ha sido comletado correctamente correctamete.<br />
+								 	Le informamos que su registro ha sido completado correctamente.<br />
 								 </p>
 								 <p>
 								 	<h3>Datos de acceso</h3>
+								 	<div style=\"margin-top:8px;\">
+										<strong>Tu Nickname: </strong>$destinatario
+									</div>
 									<div>
 										<strong>Tu Password: </strong>$pass
 									</div>
-									<div style=\"margin-top:8px;\">
-										<strong>Tu Nickname: </strong>$destinatario
-									</div>			
 								 </p>";
 
 		$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
@@ -200,8 +200,8 @@ var $dbCon;
 	 	}
 	 	else{
 			return array('result' => false,
- 					     'msg' => 'Se dio un problema inesperado en el elnvio del
- 					      correo de verificacion, por favor contacta al adminstrador');
+ 					     'msg' => 'Ocurrió problema inesperado en el envío del
+ 					      correo de verificación, por favor contacta al adminstrador.');
 	 	}
 
 	}
@@ -241,7 +241,7 @@ var $dbCon;
 			$phpmailer->Subject  =  'Recúperar password';//AQUI VA EL ASUNTO;
 			$phpmailer->Body ="<h2>Hola </h2>
 									 <p>
-									 	Se a solicitado la recuperacion de su contraseña para la cuenta de $destinatario<br />
+									 	Se ha solicitado la recuperación de su contraseña para la cuenta de $destinatario<br />
 									 </p>
 									 <p>
 										<div>
@@ -258,8 +258,8 @@ var $dbCon;
 		 	}
 		 	else{
 				return array('result' => false,
-	 					     'msg' => 'Se dio un problema inesperado en el elnvio del
-	 					      correo de verificacion, por favor contacta al adminstrador');
+	 					     'msg' => 'Ocurrió problema inesperado en el envío del
+	 					      correo de verificación, por favor contacta al adminstrador.');
 		 	}
 		 }
 

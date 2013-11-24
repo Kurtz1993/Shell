@@ -118,7 +118,7 @@ function loadMap(latitude, longitude, location, sensor, name){
 	};
 	var currentPosition = new google.maps.Marker(nodeLocation);
 	var infoOpts = {
-		content: 'Data Type: ' + sensType
+		content: 'Sensor: ' + sensType
 	};
 	var contactInfo = new google.maps.InfoWindow(infoOpts);
 	contactInfo.open(currentPosition.getMap(), currentPosition);

@@ -11,7 +11,7 @@
         <?php endif; ?>
       </div>
       <div class="navbar-collapse collapse navbar-right" id="loginNav">
-        <a href="index.php?action=destroy" class="navbar-brand navbar-col">Sign out</a>
+        <a href="index.php?action=logout" class="navbar-brand navbar-col">Sign out</a>
 		  </div>
     </div>
 </nav>
