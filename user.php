@@ -1,26 +1,4 @@
-<?php 
-include('resources/mysql.php');
-session_start();
-$mysql = new mysql();
-//comprobar correcto login ------------------------------------------------------------------------------------
-if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] != 1))
-{
-  header("Location:lost.php");
-  exit;
-}
-//cerrar sesion -----------------------------------------------------------------------------------------------
-include('resources/switch.php');
-//manipular clave ----------------------------------------------------------------------------------------------
-$mysql->conect();
-$msg = array('msg' => "");
-if(isset($_POST['code'])){
-
-  $valor = $_POST['code'];
-  $msg = $mysql->insert_clave($valor);
-  
-}
-$mysql->exit_conect();   //cierro la coneccion 
-?>
+<?php session_start(); ?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -49,27 +27,26 @@ $mysql->exit_conect();   //cierro la coneccion
       </div>
     </div>
   </nav>
-  <section id="content">
-    <div id="userInfo">Edit your information</div>
+  <div id="userInfo">Edit your information</div>
   <input type="hidden" id="userID" value="<?php echo $_SESSION['id']; ?>">
+
   <!-- User Information -->
-  <div id="userForm" class="panel-success">
+  <div class="userForm panel-success">
     <div class="userFormTitle">Basic Info</div>
-    <form id="editUserInfo">
-      <input type="hidden" id="userID" value="<?php echo $_SESSION['id']; ?>">
-      <div id="user">
-        <input id="corp" type="text" class="form-control" title="Corporation" placeholder="Corporation">
-        <input id="phone" type="text" class="form-control" title="Phone Number" placeholder="Phone Number"
-        pattern="[0-9]*$" title="You must enter a valid phone number! (Just numbers)">
-        <input id="email" type="email" class="form-control" title="E-mail" placeholder="E-mail">
-      </div>
-        <button class="btn btn-primary register" type="submit">Update info</button>
-    </form>
+      <form id="editUserInfo">
+        <div id="user">
+          <input id="corp" type="text" class="form-control"required placeholder="Corporation">
+          <input id="phone" type="text" class="form-control"required placeholder="Phone Number" pattern="[0-9]*$" title="You must enter a valid phone number! (Just numbers)">
+          <input id="email" type="email" class="form-control"required placeholder="E-mail">
+        </div>
+        <button class="btn btn-primary register" type="submit">Update Info</button>
+      </form>
   </div>
+
   <!-- Password -->
-  <div id="userForm" class="panel-success">
+  <div class="userForm panel-success">
     <div class="userFormTitle">Password</div>
-    <form id="editUserInfo">
+    <form id="editUserPassword">
       <div id="user">
         <input id="password" type="password" class="form-control" placeholder="New password" required>
         <input id="rePassword" type="password" class="form-control" placeholder="Re-type Password" required onchange="validate(this);">
@@ -77,14 +54,17 @@ $mysql->exit_conect();   //cierro la coneccion
         <button class="btn btn-primary register" type="submit">Change</button>
     </form>
   </div>
-  </section>
+
   <!-- Nodes information -->
-  <div id="userForm" class="panel-success">
+  <div class="userForm panel-success">
     <div class="userFormTitle">Nodes</div>
     <a href="" class="linkNodes">Add new node</a>
     <div id="nodesTable"></div>
     <div id="nodesMap"></div>
   </div>
+
+  <div id="notification" autofocus></div>
+
   <!-- Delete confirmation form -->
   <div class="loginForm" class="panel-success">
     <div id="userInfo">Confirm delete</div>
@@ -112,20 +92,6 @@ $mysql->exit_conect();   //cierro la coneccion
     </div>
   </footer>
   <!-- Scripts -->
-  <script>
-    $('#userPage').css({ color: '#FFFFFF', background: '#383838' });
-    $.ajax({
-      url: 'resources/requests.php',
-      type: 'post',
-      dataType: 'json',
-      data: {action: 'loadUserInfo', id: $('#userID').val()},
-      success: function(userData){
-        $('#corp').val(userData[0].corporation);
-        $('#phone').val(userData[0].tel);
-        $('#email').val(userData[0].correo);
-      }
-    });
-    loadNodeTable();
-  </script>
+  <script>$('#userPage').css({ color: '#FFFFFF', background: '#383838'});</script>
 </body>
 </html>

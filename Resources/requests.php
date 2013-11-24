@@ -81,5 +81,19 @@
 			ON U.idUsuario = D.idUsuario; -- ";
 			echo json_encode($mysql->query_assoc($getAllNodes));
 			break;
+		case 'editUserInfo':
+			$updateUserInfo =
+			"UPDATE Usuarios
+			 SET corporation = '$_POST[corp]', tel = '$_POST[phone]', correo='$_POST[email]'
+			 WHERE idUsuario = $_POST[id]; -- ";
+			 $res = $mysql->query($updateUserInfo);
+			break;
+		case 'editUserPassword':
+			$updatePassword = 
+			"UPDATE Usuarios
+			 SET password = '$_POST[pass]'
+			 WHERE idUsuario = $_POST[id]; -- ";
+			 $res = $mysql->query($updatePassword);
+			 break;
 	}
  ?>

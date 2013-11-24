@@ -1,9 +1,7 @@
 $(document).ready(function() {
 	loadRadioButtons();
-	$(document).on('click', '#content', function(event) {
-		event.preventDefault();
-		$('.loginForm').hide(500);
-	});
+	loadUserBasicInfo();
+	loadNodeTable();
 	$(document).on('click', 'input.rad', function(event) {
 		$.ajax({
 			url: 'resources/requests.php',
@@ -33,12 +31,11 @@ $(document).ready(function() {
 		$('.loginForm').show(500);
 		$('#confirmBtn').val(this.id);
 	});
-
 	$(document).on('click', 'a#dismissNotif', function(event) {
 		event.preventDefault();
 		$('.loginForm').hide(500);
+		$('div#notification').hide(800);
 	});
-
 	$(document).on('submit', 'form#loginForm', function(event) {
 		event.preventDefault();
 		var psw = $('#pswd').val();
@@ -61,4 +58,37 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$(document).on('submit', 'form#editUserInfo', function(event) {
+		event.preventDefault();
+		$.ajax({
+			url: 'resources/requests.php',
+			type: 'post',
+			data: {action:'editUserInfo',id:$('#userID').val(),corp:$('#corp').val(),phone:$('#phone').val(),email:$('#email').val()},
+			success: function(){
+				$('div#notification').html('Successfully updated!'+'<br>'+'<a href="" id="dismissNotif">Dismiss</a>');
+				$('div#notification').css('backgroundColor', '#075209');
+				$('div#notification').show(800);
+				$('#corp').val('');
+				$('#phone').val('');
+				$('#email').val('');
+				loadUserBasicInfo();
+			}
+		});
+	});	
+	$(document).on('submit', 'form#editUserPassword', function(event) {
+		event.preventDefault();
+		var pass = $('#password').val();
+		$.ajax({
+			url: 'resources/requests.php',
+			type: 'post',
+			data: {action:'editUserPassword',id:$('#userID').val(), pass:pass},
+			success: function(){
+				$('div#notification').html('Password Changed!'+'<br>'+'<a href="" id="dismissNotif">Dismiss</a>');
+				$('div#notification').css('backgroundColor', '#075209');
+				$('div#notification').show(800);
+				$('#password').val('');
+				$('#rePassword').val('');
+			}
+		});
+	});	
 });

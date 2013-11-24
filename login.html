@@ -21,7 +21,7 @@
 	var displayed = false;
 	$(document).on('click', '#showLoginForm', function() {
 		if(!displayed) {$('.loginForm').slideDown('1200'); displayed = true;}
-		else{$('#loginForm').slideUp('1200'); displayed = false;}
+		else{$('.loginForm').slideUp('1200'); displayed = false;}
 	});
 	$(document).on('click', '#content', function(event) {
 		if(displayed){$('.loginForm').slideUp('1200'); displayed=false;}

@@ -41,8 +41,8 @@ function loadNodeTable(){
       success: function(nodeInfo){
         var table = '<table id="tableNodesInfo">' +
                       '<tr>' +
-                      '<td>Node Name</td>' +
-                      '<td>Action</td>' +
+                      '<td class="tableHeading">Node Name</td>' +
+                      '<td class="tableHeading">Action</td>' +
                       '</tr>';
         for(i=0; i<=nodeInfo.length -1; i++){
           table+= '<tr>';
@@ -174,6 +174,20 @@ function loadUsersTable(){
 			$('#table').html(table);
 		}
 	});
+}
+
+function loadUserBasicInfo(){
+	$.ajax({
+      url: 'resources/requests.php',
+      type: 'post',
+      dataType: 'json',
+      data: {action: 'loadUserInfo', id: $('#userID').val()},
+      success: function(userData){
+        $('#corp').val(userData[0].corporation);
+        $('#phone').val(userData[0].tel);
+        $('#email').val(userData[0].correo);
+      }
+    });
 }
 
 function loadAllNodes(){

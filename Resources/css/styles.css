@@ -71,7 +71,7 @@ div.loginForm > div{
 }
 form#loginForm{ padding: 0 10%; }
 form#loginForm > input { margin: 7% auto 0 auto; width: 95%; }
-div#userForm{
+div.userForm{
 	width: 25%; 
 	margin-top: 1%;
 	margin-left: 6%;
@@ -116,6 +116,32 @@ td.tableHeading{
 	background-color: black;
 	padding: 5px 10px;
 	border: 1px solid white;
+}
+
+div#notification{
+	display: none;
+	margin-left: 40%;
+	margin-top: 10%;
+	text-align: center; 
+	width: 20%;
+	font-size: 1.2em;
+	color: white;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-o-border-radius: 11px;
+	-ms-border-radius: 11px;
+	border-radius: 11px;
+	-webkit-box-shadow: 1px 1px 25px;
+	-moz-box-shadow: 1px 1px 25px;
+	-o-box-shadow: 1px 1px 25px;
+	-ms-box-shadow: 1px 1px 25px;
+	box-shadow: 1px 1px 25px;
+	position: fixed;
+	-webkit-opacity: .85;
+	-moz-opacity: .85;
+	-o-opacity: .85;
+	-ms-opacity: .85;
+	opacity: .85;
 }
 td{border:1px solid white; text-align: center;}
 @media screen and (min-width: 480px)  {
