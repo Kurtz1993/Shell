@@ -230,14 +230,16 @@ function loadAllNodes(){
     });
 }
 
-function loadNewNode (latitude, longitude) {
+function loadNewNodeMap () {
+	latitude = 19.26610289674101;
+	longitude = -103.73572035692632;
 	var optionsMap = {
 		center : new google.maps.LatLng(latitude, longitude),
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
 		zoom : 15
 	};
 
-	var mapa = new google.maps.Map(document.getElementById('sec_map'),optionsMap);
+	var mapa = new google.maps.Map(document.getElementById('nodesMap'),optionsMap);
 
 	mapa.Markers = Array();
 
@@ -249,14 +251,12 @@ function loadNewNode (latitude, longitude) {
 	};
 
 	mapa.AddMarker = function(latLng){
-
 		this.DeleteMarkers();
-
 		var markerOptions = {
 			position : latLng,
 			map : this
 		};
-
+		var mapMark = new google.maps.Marker(markerOptions);
 		this.Markers.push(mapMark);
 	};
 
@@ -272,6 +272,4 @@ function loadNewNode (latitude, longitude) {
 		position: new google.maps.LatLng(latitude, longitude),
 		map: mapa
 	};
-	var currentPosition = new google.maps.Marker(coordinates);
-	mapa.Markers.push(currentPosition);
 }

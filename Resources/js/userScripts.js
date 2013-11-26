@@ -34,7 +34,7 @@ $(document).ready(function() {
 	$(document).on('click', 'a#dismissNotif', function(event) {
 		event.preventDefault();
 		$('.loginForm').hide(500);
-		$('div#notification').hide(600);
+		$('div#notification').hide(500);
 	});
 	$(document).on('submit', 'form#loginForm', function(event) {
 		event.preventDefault();
@@ -67,7 +67,7 @@ $(document).ready(function() {
 			success: function(){
 				$('div#notification').html('Successfully updated!'+'<br>'+'<a href="" id="dismissNotif">Dismiss</a>');
 				$('div#notification').css('backgroundColor', '#075209');
-				$('div#notification').show(600);
+				$('div#notification').show(500);
 				$('#corp').val('');
 				$('#phone').val('');
 				$('#email').val('');
@@ -85,7 +85,7 @@ $(document).ready(function() {
 			success: function(){
 				$('div#notification').html('Password Changed!'+'<br>'+'<a href="" id="dismissNotif">Dismiss</a>');
 				$('div#notification').css('backgroundColor', '#075209');
-				$('div#notification').show(600);
+				$('div#notification').show(500);
 				$('#password').val('');
 				$('#rePassword').val('');
 			}
@@ -93,7 +93,58 @@ $(document).ready(function() {
 	});
 	$(document).on('click', '#addNode' , function(event) {
 		event.preventDefault();
-		$('#addForm').slideDown(600);
-		$('#nodesTable').slideUp(600);
+		$('#addForm').slideDown(500);
+		$('#nodesTable').slideUp(500);
+		$('a#addNode').html('Check existing nodes');
+		$('a#addNode').attr('id', 'checkNodes');
+		loadNewNodeMap();
+	});
+	$(document).on('click', '#checkNodes' , function(event) {
+		event.preventDefault();
+		$('#addForm').slideUp(500);
+		$('#nodesTable').slideDown(500);
+		$('a#checkNodes').html('Add new node');
+		$('a#checkNodes').attr('id', 'addNode');
+	});
+	$(document).on('submit', '#addDevice' , function(event) {
+		event.preventDefault();
+		var latitud = $('#latitud').val();
+		var longitud = $('#longitud').val();
+		var serial = $('#serial').val();
+		var name = $('#deviceName').val();
+		var UID = $('#userID').val();
+		alert(name);
+		if(latitud == '' || longitud == ''){
+			alert('Please select a location for your new device');
+		}
+		else{
+			$.ajax({
+				url:'resources/requests.php',
+				type:'post',
+				dataType:'json',
+				data:{action:'newNode',name:name,sn:serial,lat:latitud,lon:longitud, uid:UID},
+				success: function(call){
+					if(call.response){
+						loadNodeTable();
+						$('div#notification').html('Device added!'+'<br>'+'<a href="" id="dismissNotif">Dismiss</a>');
+						$('div#notification').css('backgroundColor', '#075209');
+						$('div#notification').show(500);
+						$('#addForm').slideUp(500);
+						$('#nodesTable').slideDown(500);
+						$('#latitud').val();
+						$('#longitud').val();
+						$('#serial').val();
+						$('#deviceName').val();
+						$('a#checkNodes').html('Add new node');
+						$('a#checkNodes').attr('id', 'addNode');
+					}
+					else{
+						$('div#notification').html('Invalid serial number'+'<br>'+'<a href="" id="dismissNotif">Dismiss</a>');
+						$('div#notification').css('backgroundColor', '#590C0C');
+						$('div#notification').show(500);
+					}
+				}
+			});
+		}
 	});
 });

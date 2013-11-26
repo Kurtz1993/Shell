@@ -73,7 +73,7 @@
 			break;
 		case 'loadAllNodes':
 			$getAllNodes =
-			"SELECT idDispositivo ID, nombre Name, serial SN, latitud Lat, longitud Longi, sensor Sens, 
+			"SELECT idDispositivo ID, nombre Name, SN SN, latitud Lat, longitud Longi, sensor Sens, 
 			(SELECT U.nickname FROM Usuarios U
 			WHERE U.idUsuario = D.idUsuario) AS Owner
 			FROM dispositivos D
@@ -96,12 +96,22 @@
 			 $res = $mysql->query($updatePassword);
 			 break;
 		case 'newNode':
+			$aux = array('response'=>'');
 			$lookForSN = "SELECT idDispositivo 
 						  FROM dispositivos
-						  WHERE serial = $_POST[sn]; -- ";
+						  WHERE SN = '$_POST[sn]'; -- ";
 			$res = $mysql->query_assoc($lookForSN);
 			if(sizeof($res)>0){
-				echo json_encode($res);
+				$addNewDevice=
+				"UPDATE dispositivos
+				SET nombre='$_POST[name]', latitud=$_POST[lat], longitud=$_POST[lon], idUsuario = $_POST[uid]
+				WHERE SN='$_POST[sn]'; -- ";
+				$aux['response']=true;
+				echo json_encode($aux);
+			}
+			else{
+				$aux['response']=false;
+				echo json_encode($aux);
 			}
 			break;
 	}

@@ -66,8 +66,8 @@
       <form id="addDevice">
         <input type="text" id="serial" class="form-control" placeholder="Serial Number" autofocus required>
         <input type="text" id="deviceName" class="form-control" placeholder="Device Name" required>
-        <input type="hidden" id="latitud" required>
-        <input type="hidden" id="longitud" required>
+        <input type="hidden" id="latitud">
+        <input type="hidden" id="longitud">
         <button type="submit" class="btn btn-primary register">Add</button>
       </form>
     </div>
