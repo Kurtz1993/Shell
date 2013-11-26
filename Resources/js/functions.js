@@ -229,3 +229,49 @@ function loadAllNodes(){
       }
     });
 }
+
+function loadNewNode (latitude, longitude) {
+	var optionsMap = {
+		center : new google.maps.LatLng(latitude, longitude),
+		mapTypeId : google.maps.MapTypeId.ROADMAP,
+		zoom : 15
+	};
+
+	var mapa = new google.maps.Map(document.getElementById('sec_map'),optionsMap);
+
+	mapa.Markers = Array();
+
+	mapa.DeleteMarkers = function(){
+		for(marker in this.Markers){
+			this.Markers[marker].setMap(null);
+		}
+		this.Markers = Array();
+	};
+
+	mapa.AddMarker = function(latLng){
+
+		this.DeleteMarkers();
+
+		var markerOptions = {
+			position : latLng,
+			map : this
+		};
+
+		this.Markers.push(mapMark);
+	};
+
+	google.maps.event.addListener(mapa,'click',function(event){
+		$('#latitud').val(event.latLng.lat());
+		$('#longitud').val(event.latLng.lng())
+		this.AddMarker(event.latLng);
+	});
+
+	mapa.DeleteMarkers();
+
+	var coordinates = {
+		position: new google.maps.LatLng(latitude, longitude),
+		map: mapa
+	};
+	var currentPosition = new google.maps.Marker(coordinates);
+	mapa.Markers.push(currentPosition);
+}

@@ -60,10 +60,22 @@
     <div class="userFormTitle">Nodes</div>
     <a href="" class="linkNodes" id="addNode">Add new node</a>
     <div id="nodesTable"></div>
-    <div id="nodesMap"></div>
+    
+    <div id="addForm">
+      <div id="userInfo">Add New Node</div>
+      <form id="addDevice">
+        <input type="text" id="serial" class="form-control" placeholder="Serial Number" autofocus required>
+        <input type="text" id="deviceName" class="form-control" placeholder="Device Name" required>
+        <input type="hidden" id="latitud" required>
+        <input type="hidden" id="longitud" required>
+        <button type="submit" class="btn btn-primary register">Add</button>
+      </form>
+    </div>
+
+    <div id="nodesMap" class="nodesForms"></div>
   </div>
 
-  <div id="notification" autofocus></div>
+  <div id="notification"></div>
 
   <!-- Delete confirmation form -->
   <div class="loginForm" class="panel-success">
@@ -80,14 +92,10 @@
   <footer class="navbar navbar-inverse navbar-bottom">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+        <a class="navbar-brand navbar-col">Shell Systems® 2013</a>
       </div>
       <div class="navbar-collapse collapse navbar-right">
-        <?php if($_SESSION['id'] == 1): ?>
-          <a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
-            <?php else: ?>
-            <a href= "user.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
-            <?php endif; ?>
+          <a class="navbar-brand navbar-col" id="loggedUser">Welcome, <?php echo $_SESSION['usuario']; ?>!</a>
       </div>
     </div>
   </footer>

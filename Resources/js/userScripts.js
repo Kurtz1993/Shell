@@ -91,4 +91,9 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$(document).on('click', '#addNode' , function(event) {
+		event.preventDefault();
+		$('#addForm').slideDown(600);
+		$('#nodesTable').slideUp(600);
+	});
 });
