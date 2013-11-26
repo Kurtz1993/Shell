@@ -3,12 +3,9 @@ body{
 	background-color: #a0a0a0;
 	border-radius: 4px;
 	padding-top: 50px;
-	padding-bottom: 90px;
 }
 img#shellLogo{ margin-top: 30px; }
-footer{margin-top: 3.5%;}
 div#loginNav{ width: auto; }
-li#loggedUser{ color: #FFFFFF; }
 section.webForm{ 
 	margin-right: auto; 
 	margin-left: auto;
@@ -70,8 +67,8 @@ div.loginForm > div{
 	-ms-border-radius: 10px 10px 0 0;
 	border-radius: 10px 10px 0 0;
 }
-form#loginForm{ padding: 0 10%; }
-form#loginForm > input { margin: 7% auto 0 auto; width: 95%; }
+form#loginForm{ padding: 0 10px; }
+form#loginForm > input { margin: 10px auto 10px auto; width: 75%; }
 div.userForm{
 	width: 25%; 
 	margin-top: 1%;
@@ -144,7 +141,7 @@ div#notification{
 	-ms-opacity: .85;
 	opacity: .85;
 }
-a{color:#372496;text-decoration: underline;}
+a#forgot{color:#372496;text-decoration: underline;}
 form#addDevice{padding: 5% 13%;}
 form#addDevice > input.form-control{margin-bottom: 8%;}
 form#addDevice > button{margin-top: -2.5%;}
@@ -163,3 +160,4 @@ td{border:1px solid white; text-align: center;}
 		margin-right: 15%;
 	}	
 }
+div.navbar-ex1-collapse{background-color: #222222;}

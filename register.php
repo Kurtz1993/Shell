@@ -35,17 +35,7 @@
 </head>
 <body>
 	<?php
-		session_start();
-		if (isset($_SESSION["usuario"]) && isset($_SESSION["password"]))
-		{
-			include('logged.php');
-			include('resources/mysql.php');
-			$mysql = new mysql();
-			include('resources/switch.php');
-		}
-		else{
-			include('login.html');
-		}
+		include('login.html');
 	?>
 	<section id="content">
 		<section class="panel-success webForm">

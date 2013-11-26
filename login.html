@@ -1,30 +1,22 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-			<a href="index.php" class="navbar-brand" id="startPage">SHELL SYSTEMS</a>
-			<a href="register.php" class="navbar-brand" id="registerPage">Register</a>
-        </div>
-        <div class="navbar-collapse collapse navbar-form navbar-right" id="loginNav">
-        	<button id="showLoginForm" class="btn btn-primary">Login</button>
-		</div>
-      </div>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href="index.php" class="navbar-brand">Shell Systems</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="register.php">Register</a></li>
+        </ul>
+        <form id="loginForm" class="navbar-form navbar-right" action="valida.php" method="post">
+        	<div class="form-group"><input type="text" class="form-control" placeholder="User"></div>
+        	<div class="form-group"><input type="text" class="form-control" placeholder="Password"></div>
+        	<button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
 </nav>
-<div class="loginForm" class="panel-success">
-	<div id="userInfo">Login</div>
-	<form id="loginForm" action="valida.php" method="post">
-		<input type="text" class="form-control" placeholder="Username" name="usuario" required autofocus>
-		<input type="password" class="form-control" placeholder="Password" name="password" required>
-		<button id="loginBtn" type="submit" class="btn btn-primary">Login</button><br>
-		<a href="forgot.php">Forgot my password</a>
-	</form>
-</div>
-<script>$(document).ready(function() {
-	var displayed = false;
-	$(document).on('click', '#showLoginForm', function() {
-		if(!displayed) {$('.loginForm').slideDown('1200'); displayed = true;}
-		else{$('.loginForm').slideUp('1200'); displayed = false;}
-	});
-	$(document).on('click', '#content', function(event) {
-		if(displayed){$('.loginForm').slideUp('1200'); displayed=false;}
-	});
-});</script>
