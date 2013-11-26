@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 /*~ class.phpmailer.php
 .---------------------------------------------------------------------------.
 |  Software: PHPMailer - PHP email class                                    |
@@ -1737,8 +1736,8 @@ class PHPMailer {
       default:
         // Replace every high ascii, control =, ? and _ characters
         //TODO using /e (equivalent to eval()) is probably not a good idea
-        $encoded = preg_replace('/([\000-\011\013\014\016-\037\075\077\137\177-\377])/e',
-              "'='.sprintf('%02X', ord('\\1'))", $encoded);
+        // $encoded = preg_replace('/([\000-\011\013\014\016-\037\075\077\137\177-\377])/e',
+        //       "'='.sprintf('%02X', ord('\\1'))", $encoded);
         break;
     }
 

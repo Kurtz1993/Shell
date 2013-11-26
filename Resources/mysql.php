@@ -53,6 +53,9 @@ var $dbCon;
 //funciones de manejo de datos
 
 	public function validar($usuario, $password){
+		
+		$password = sha1($password);
+
 		$consult = "SELECT * FROM usuarios WHERE nickname = '$usuario' and password = '$password'";    //asigno la sintaxis de la consulta a una variable	  
 		$datos = $this->query_assoc($consult);
 		if(count($datos)>0)   //verifico si el tamaño del vector es 0  (si es que existe un registro, siempre sera 0, ya que los registros no se repiten)
@@ -206,14 +209,23 @@ var $dbCon;
 
 	}
 
+	public function NewPass($longitud) {
+		 $key = '';
+		 $pattern = '1234567890';
+		 $max = strlen($pattern)-1;
+		 for($i=0;$i < $longitud;$i++) $key .= $pattern{mt_rand(0,$max)};
+		 return $key;
+	}
+ 
 	public function RecuperarPass($emaildestino, $destinatario){
 
 		$this->conect();
-		$consult = "SELECT nickname FROM usuarios WHERE nikname = '$destinatario' and correo = '$emaildestino'";
+		$consult = "SELECT idUsuario FROM usuarios WHERE nickname = '$destinatario' and correo = '$emaildestino'";
 		$res = $this->query_assoc($consult);
-		$this->exit_conect();
 
 		if(count($res) > 0){
+
+			$newpass = $this->NewPass(20);
 
 			$phpmailer = new PHPMailer();
 
@@ -241,16 +253,26 @@ var $dbCon;
 			$phpmailer->Subject  =  'Recúperar password';//AQUI VA EL ASUNTO;
 			$phpmailer->Body ="<h2>Hola </h2>
 									 <p>
-									 	Se ha solicitado la recuperación de su contraseña para la cuenta de $destinatario<br />
-									 </p>
+									 	Se ha solicitado la recuperación de contraseña para la cuenta de $destinatario<br />
+									 	<br />
+									 	Se ha generado una contraseña temporal con la cual puede accesar para reestablecer su contraseña<br />
 									 <p>
 										<div>
-											<strong>Tu Password: </strong>$pass
+											<strong>Nueva contraseña: </strong>$newpass
 										</div>	
 									 </p>";
 
 			$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
 			$mail = $phpmailer->Send();
+
+			$id = intval($res[0]['idUsuario']);
+
+			$newpass = sha1($newpass);
+
+			$consult = "UPDATE usuarios SET password = '$newpass' WHERE idUsuario = $id";
+			$this->query($consult);
+
+			$this->exit_conect();
 
 			if($mail){
 				return array('result' => true,
@@ -261,6 +283,7 @@ var $dbCon;
 	 					     'msg' => 'Ocurrió problema inesperado en el envío del
 	 					      correo de verificación, por favor contacta al adminstrador.');
 		 	}
+
 		 }
 
 	}
