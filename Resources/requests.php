@@ -89,9 +89,10 @@
 			 $res = $mysql->query($updateUserInfo);
 			break;
 		case 'editUserPassword':
+			$password = sha1($_POST['pass']);
 			$updatePassword = 
 			"UPDATE Usuarios
-			 SET password = '$_POST[pass]'
+			 SET password = '$password'
 			 WHERE idUsuario = $_POST[id]; -- ";
 			 $res = $mysql->query($updatePassword);
 			 break;
