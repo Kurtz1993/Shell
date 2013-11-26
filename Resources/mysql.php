@@ -68,7 +68,7 @@ var $dbCon;
 	        exit;
 	      }
 	      else{ 
-	        $_SESSION['id'] = 2;
+	        $_SESSION['id'] = $dato[0]['idUsuario'];
 	        header('Location:index.php');  //redirecciono
 	        exit;
 	      }
