@@ -4,10 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Shell Systems</title>
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 	<script src="Resources/js/jquery.js"></script>
-	<script src="Resources/js/bootstrap.js"></script>
-	<script src="resources/js/holder.js"></script>
+	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 	<link rel="stylesheet" href="Resources/css/styles.css">
 </head>
 <body>
@@ -24,27 +23,9 @@
 			include('login.html');
 		}	
 	?>
-	<section id="content" class="carousel slide">        
-           <ol class="carousel-indicators">
-                <li data-target="#content" data-slide-to="0" class="active"></li>
-                <li data-target="#content" data-slide-to="1" ></li>
-                <li data-target="#content" data-slide-to="2" ></li>
-           </ol>
-
-           <div class="carousel-inner">
-                <div class="item active">
-                    <img src="img/background.jpg" class="adaptar">
-                </div>
-                <div class="item">
-                    <img src="img/background.jpg" class="adaptar">
-                </div>
-                <div class="item">
-                    <img src="img/background.jpg" class="adaptar">
-                </div>
-           </div>
-           <a href="#content" class="left carousel-control" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-           <a href="#content" class="right carousel-control" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-       </section>
+	<section id="content">
+		<center><img src="img/shell.png" id="shellLogo"></center>
+	</section>
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
