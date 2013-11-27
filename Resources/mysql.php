@@ -196,8 +196,6 @@ var $dbCon;
 		$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
 		
 		$mail = $phpmailer->Send();
-		exit;
-
 		if($mail){
 			return array('result' => true,
   					     'msg' => "Se ha enviado un correo a: $emaildestino");
