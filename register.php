@@ -85,7 +85,7 @@
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+				<a class="navbar-brand navbar-col">Shell Systems® 2013</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
 		    	<a class="navbar-brand navbar-col" id="loggedUser">Welcome, Guest!</a>

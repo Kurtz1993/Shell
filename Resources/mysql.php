@@ -99,6 +99,29 @@ var $dbCon;
 		}
 	}
 
+	public function insert_serial($valor){
+
+		$consult = "SELECT SN FROM dispositivos WHERE SN = '$valor'";
+		$datos = $this->query_assoc($consult); //guardo en un vector los resultados de la consulta
+
+		if($datos != false){
+			return array(
+				'result' => false,
+				'msg' => 'la clave ya existe, intente con otra diferente por favor'
+				);
+		}
+		else{
+			$insertar="INSERT INTO dispositivos (idUsuario) values ('$id')";
+			$this->query($insertar); 
+			$insertar="INSERT INTO dispositivos (SN) VALUES ('$valor')";
+			$this->query($insertar);
+			
+			return array(
+				'result' => true,
+				'msg' => 'clave correcta y almacenanda, ya puede utilizarse'
+				);
+		}
+	}
 	public function get_usuarios(){
 		$consult = "SELECT * FROM usuarios";
 		return $this->query_assoc($consult);

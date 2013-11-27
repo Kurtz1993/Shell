@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+
+if (!isset($_SESSION["usuario"]) && !isset($_SESSION["password"]) && !isset($_SESSION["id"])!=1)
+{
+  header("Location:lost.php");
+  exit;
+}
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +19,7 @@
 	<script src="Resources/js/jquery.js"></script>
 	<script src="Resources/js/functions.js"></script>
 	<script src="resources/js/adminScripts.js"></script>
-	<title>Document</title>
+	<title>Admin Tables</title>
 </head>
 <body>
 	<?php include('logged.php'); ?>
@@ -38,10 +47,10 @@
   	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
-	            <a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+	            <a class="navbar-brand navbar-col">Shell Systems® 2013</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
-  				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+  				<a class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
 			</div>
 		</div>
 	</footer>

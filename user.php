@@ -3,7 +3,7 @@ include('resources/mysql.php');
 session_start();
 $mysql = new mysql();
 //comprobar correcto login ------------------------------------------------------------------------------------
-if (!isset($_SESSION["usuario"]) && !isset($_SESSION["password"]))
+if (!isset($_SESSION["usuario"]) && !isset($_SESSION["password"]) && !isset($_SESSION["id"])==1)
 {
   header("Location:lost.php");
   exit;

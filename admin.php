@@ -23,7 +23,7 @@ if(isset($_POST['code'])){
 if(isset($_POST['serial'])){
 	
 	$valor = $_POST['serial'];
-	$msg2 = $mysql->insert_clave($valor);
+	$msg2 = $mysql->insert_serial($valor, $_POST['id']);
 	
 }
 $mysql->exit_conect();   //cierro la coneccion 
@@ -46,6 +46,7 @@ $mysql->exit_conect();   //cierro la coneccion
 		<h2 class="panel-heading">User codes</h2>
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
+				Id Usuario<input type="text" name="id">
 				Generated code: <input id="code" type="text" class="form-control-static" name="code"><br><br>
 				<input type="button" value="Generate code" onclick="UserCode();" class="btn btn-primary">
 				<input type="submit" value="Store key" class="btn btn-primary">
@@ -69,10 +70,10 @@ $mysql->exit_conect();   //cierro la coneccion
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-col" href="#">Shell Systems® 2013</a>
+				<a class="navbar-brand navbar-col">Shell Systems® 2013</a>
 			</div>
 			<div class="navbar-collapse collapse navbar-right">
-  				<a href= "admin.php" class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
+  				<a class="navbar-brand navbar-col" id="loggedUser">Welcome, Master!</a>
   			</div>
 		</div>
 	</footer>
