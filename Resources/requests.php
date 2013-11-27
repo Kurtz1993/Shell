@@ -127,5 +127,13 @@
 			 WHERE Da.idDispositivo = $_POST[id]; -- ";
 			 echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
+		case 'loadGraph':
+				$getProm =
+				"SELECT ROUND(AVG(lectura),2) Promedio, DAY(diaLectura) Dia
+				FROM data
+				WHERE idDispositivo = $_POST[id]
+				GROUP BY DAY(diaLectura); -- ";
+				echo json_encode($mysql->query_assoc($getProm));
+				break;
 	}
  ?>

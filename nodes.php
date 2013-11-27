@@ -20,7 +20,9 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	<script src="Resources/js/jquery.js"></script>
 	<script src="Resources/js/functions.js"></script>
 	<script src="Resources/js/userScripts.js"></script>
-	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
+	<script src="Resources/js/bootstrap.js"></script>
+	<script src="resources/js/amcharts.js"></script>
+	<script src="resources/js/serial.js"></script>
 </head>
 <body>
 	<?php

@@ -237,6 +237,7 @@ function loadNodeData(deviceID){
 		dataType:'json',
 		data:{action:'loadNodeData',id:deviceID},
 		success: function(response){
+			nodeData = response;
 			var table = '<table id="tableNodesInfo">' +
                       '<tr>' +
                       '<td class="tableHeading">Nº</td>' +
@@ -257,6 +258,29 @@ function loadNodeData(deviceID){
         }
         table+='</table>';
         $('#tableData').html(table);
+		}
+	});
+}
+
+function loadGraph(deviceID){
+	$.ajax({
+		url:'resources/requests.php',
+		type:'post',
+		dataType:'json',
+		data:{action:'loadGraph', id:deviceID},
+		success: function(response){
+			var chart = new AmCharts.AmSerialChart();
+			chart.dataProvider = response;
+			chart.categoryField = 'Dia';
+			var graph = new AmCharts.AmGraph();
+			graph.type = 'column';
+			graph.title = response[0].Dia;
+			graph.valueField = 'Promedio';
+			graph.fillAlphas = 0.9;
+			graph.fillColors = '#469';
+			graph.lineColor = '#469';
+			chart.addGraph(graph);
+			chart.write('stadistics');
 		}
 	});
 }

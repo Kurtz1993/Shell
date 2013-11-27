@@ -2,7 +2,7 @@ $(document).ready(function() {
 	loadRadioButtons();
 	loadUserBasicInfo();
 	loadNodeTable();
-	;
+	
 	$(document).on('click', 'input.rad', function(event) {
 		var deviceID = $(this).val();
 
@@ -14,6 +14,7 @@ $(document).ready(function() {
 			success: function(nodeInfo){
 				loadMap(nodeInfo[0].latitud, nodeInfo[0].longitud, 'map',nodeInfo[0].sensor,nodeInfo[0].nombre);
 				loadNodeData(deviceID);
+				loadGraph(deviceID);
 			}
 		});
 	});
