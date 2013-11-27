@@ -240,7 +240,6 @@ function loadNodeData(deviceID){
 			var table = '<table id="tableNodesInfo">' +
                       '<tr>' +
                       '<td class="tableHeading">Nº</td>' +
-                      '<td class="tableHeading">Device Name</td>' +
                       '<td class="tableHeading">Value</td>' +
                       '<td class="tableHeading">Time</td>'+
                       '<td class="tableHeading">Date</td>' +
@@ -251,7 +250,6 @@ function loadNodeData(deviceID){
           	else{sensor="%"}
           	table+= '<tr>';
           	table+=   '<td>'+response[i].ID+'</td>';
-          	table+=   '<td>'+response[i].nombre+'</td>';
 			table+=   '<td>'+response[i].valor+" "+sensor+" "+'</td>';
 			table+=   '<td>'+response[i].horaLectura+'</td>';
 			table+=   '<td>'+response[i].day+'</td>';

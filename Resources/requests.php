@@ -120,7 +120,7 @@
 			break;
 		case 'loadNodeData':
 			$getDeviceData =
-			"SELECT Da.ID, Di.nombre, Da.lectura valor, Da.horaLectura, Da.diaLectura day, Di.sensor
+			"SELECT Da.ID, Da.lectura valor, Da.horaLectura, Da.diaLectura day, Di.sensor
 			 FROM data Da
 			 RIGHT JOIN dispositivos Di
 			 ON Di.idDispositivo = Da.idDispositivo
