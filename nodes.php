@@ -37,6 +37,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 
 	<div id="nodes"><!-- Fill with all the nodes that the user has --></div>
 	<div id="map"><!-- Fill with device location --></div>
+	<div id="stadistics"><!-- Fill with stadistic data --></div>
 	<div id="tableData"><!-- Fill with the device data --></div>
 
 

@@ -13,10 +13,17 @@ include('resources/switch.php');
 //manipular clave ----------------------------------------------------------------------------------------------
 $mysql->conect();
 $msg = array('msg' => "");
+$msg2 = array('msg' => "");
 if(isset($_POST['code'])){
 
 	$valor = $_POST['code'];
 	$msg = $mysql->insert_clave($valor);
+	
+}
+if(isset($_POST['serial'])){
+	
+	$valor = $_POST['serial'];
+	$msg2 = $mysql->insert_clave($valor);
 	
 }
 $mysql->exit_conect();   //cierro la coneccion 
@@ -51,11 +58,11 @@ $mysql->exit_conect();   //cierro la coneccion
 		<h2 class="panel-heading">Nodes Serial Numbers</h2>
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
-				Generated Serial: <input id="code" type="text" class="form-control-static" name="serial"><br><br>
+				Generated Serial: <input id="serial" type="text" class="form-control-static" name="serial"><br><br>
 				<input type="button" value="Generate serial" class="btn btn-primary" onclick="SerialNumber();">
 				<input type="submit" value="Store serial" class="btn btn-primary">
 				<div id="resultMsg">
-					<?php if(isset($msg)) echo $msg['msg'];	?>
+					<?php if(isset($msg2)) echo $msg2['msg'];	?>
 				</div>
 			</div>
 	</section>

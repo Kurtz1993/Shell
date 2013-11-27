@@ -17,7 +17,7 @@ function SerialNumber(){
     for( var i=0; i < 12; i++ ){
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-    $('#code').val(text);
+    $('#serial').val(text);
 }
 
 function validate(input){

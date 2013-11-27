@@ -175,8 +175,7 @@ var $dbCon;
 
 
 		// Aqui va la dirección de correo al que se enviara el mensaje
-		$phpmailer->AddAddress($emaildestino);
-				
+		$phpmailer->AddAddress($emaildestino, $destinatario);
 		$phpmailer->WordWrap = 50; // Largo de las lineas
 		$phpmailer->IsHTML(true); // Podemos incluir tags html
 		$phpmailer->Subject  =  'Correo registro';//AQUI VA EL ASUNTO;
@@ -195,7 +194,9 @@ var $dbCon;
 								 </p>";
 
 		$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
+		echo var_dump($phpmailer->Body);
 		$mail = $phpmailer->Send();
+		exit;
 
 		if($mail){
 			return array('result' => true,
@@ -246,7 +247,7 @@ var $dbCon;
 
 
 			// Aqui va la dirección de correo al que se enviara el mensaje
-			$phpmailer->AddAddress($emaildestino);
+			$phpmailer->AddAddress($emaildestino, $destinatario);
 					
 			$phpmailer->WordWrap = 50; // Largo de las lineas
 			$phpmailer->IsHTML(true); // Podemos incluir tags html
