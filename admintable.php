@@ -15,7 +15,7 @@
 <body>
 	<?php include('logged.php'); ?>
 	<div id="userInfo">Users information</div>
-
+	
 	<div id="table" class="adminTable"></div>
 	<div id="userInfo">Nodes information</div>
 	<div id="adminNodesTable" class="adminTable"></div>

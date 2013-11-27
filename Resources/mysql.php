@@ -194,7 +194,7 @@ var $dbCon;
 								 </p>";
 
 		$phpmailer->Body = html_entity_decode(utf8_decode($phpmailer->Body)); //Codificamos el texto al formato html correcto
-		echo var_dump($phpmailer->Body);
+		
 		$mail = $phpmailer->Send();
 		exit;
 
