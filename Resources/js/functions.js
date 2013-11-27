@@ -230,6 +230,39 @@ function loadAllNodes(){
     });
 }
 
+function loadNodeData(deviceID){
+	$.ajax({
+		url:'resources/requests.php',
+		type:'post',
+		dataType:'json',
+		data:{action:'loadNodeData',id:deviceID},
+		success: function(response){
+			var table = '<table id="tableNodesInfo">' +
+                      '<tr>' +
+                      '<td class="tableHeading">Nº</td>' +
+                      '<td class="tableHeading">Device Name</td>' +
+                      '<td class="tableHeading">Value</td>' +
+                      '<td class="tableHeading">Time</td>'+
+                      '<td class="tableHeading">Date</td>' +
+                      '</tr>';
+        var sensor = "";
+        for(i=0; i<=response.length -1; i++){
+          	if(response[i].sensor == 1){sensor ="ºC";}
+          	else{sensor="%"}
+          	table+= '<tr>';
+          	table+=   '<td>'+response[i].ID+'</td>';
+          	table+=   '<td>'+response[i].nombre+'</td>';
+			table+=   '<td>'+response[i].valor+" "+sensor+" "+'</td>';
+			table+=   '<td>'+response[i].horaLectura+'</td>';
+			table+=   '<td>'+response[i].day+'</td>';
+          	table+= '</tr>';
+        }
+        table+='</table>';
+        $('#tableData').html(table);
+		}
+	});
+}
+
 function loadNewNodeMap () {
 	latitude = 19.26610289674101;
 	longitude = -103.73572035692632;

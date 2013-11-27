@@ -25,7 +25,7 @@
 		case 'loadNodes':
 			$getNodes = "SELECT nombre Name, idDispositivo ID
 						 FROM dispositivos
-						 WHERE idUsuario = $_POST[id]; -- ";
+						 WHERE idUsuario = $_POST[id] AND latitud IS NOT NULL; -- ";
 			echo json_encode($mysql->query_assoc($getNodes));
 			break;
 		case 'deleteNode':
@@ -98,15 +98,18 @@
 			 break;
 		case 'newNode':
 			$aux = array('response'=>'');
-			$lookForSN = "SELECT idDispositivo 
+			$lookForSN = "SELECT idDispositivo, sensor 
 						  FROM dispositivos
 						  WHERE SN = '$_POST[sn]'; -- ";
 			$res = $mysql->query_assoc($lookForSN);
 			if(sizeof($res)>0){
+				$sensor = $res[0]['sensor'];
+				$DeviceID = $res[0]['idDispositivo'];
 				$addNewDevice=
-				"UPDATE dispositivos
-				SET nombre='$_POST[name]', latitud=$_POST[lat], longitud=$_POST[lon], idUsuario = $_POST[uid]
-				WHERE SN='$_POST[sn]'; -- ";
+				"UPDATE dispositivos 
+				SET nombre ='$_POST[name]', latitud = $_POST[lat], longitud = $_POST[lon], sensor = $sensor 
+				WHERE idDispositivo = $DeviceID; -- ";
+				$mysql->query($addNewDevice);
 				$aux['response']=true;
 				echo json_encode($aux);
 			}
@@ -114,6 +117,15 @@
 				$aux['response']=false;
 				echo json_encode($aux);
 			}
+			break;
+		case 'loadNodeData':
+			$getDeviceData =
+			"SELECT Da.ID, Di.nombre, Da.lectura valor, Da.horaLectura, Da.diaLectura day, Di.sensor
+			 FROM data Da
+			 RIGHT JOIN dispositivos Di
+			 ON Di.idDispositivo = Da.idDispositivo
+			 WHERE Da.idDispositivo = $_POST[id]; -- ";
+			 echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
 	}
  ?>

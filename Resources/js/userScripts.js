@@ -2,14 +2,18 @@ $(document).ready(function() {
 	loadRadioButtons();
 	loadUserBasicInfo();
 	loadNodeTable();
+	;
 	$(document).on('click', 'input.rad', function(event) {
+		var deviceID = $(this).val();
+
 		$.ajax({
 			url: 'resources/requests.php',
 			type: 'post',
 			dataType: 'json',
-			data: {action: 'loadMap', id: $(this).val()},
+			data: {action: 'loadMap', id: deviceID},
 			success: function(nodeInfo){
 				loadMap(nodeInfo[0].latitud, nodeInfo[0].longitud, 'map',nodeInfo[0].sensor,nodeInfo[0].nombre);
+				loadNodeData(deviceID);
 			}
 		});
 	});
@@ -113,7 +117,6 @@ $(document).ready(function() {
 		var serial = $('#serial').val();
 		var name = $('#deviceName').val();
 		var UID = $('#userID').val();
-		alert(name);
 		if(latitud == '' || longitud == ''){
 			alert('Please select a location for your new device');
 		}

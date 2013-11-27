@@ -1,4 +1,26 @@
-<?php session_start(); ?>
+<?php 
+include('resources/mysql.php');
+session_start();
+$mysql = new mysql();
+//comprobar correcto login ------------------------------------------------------------------------------------
+if (!isset($_SESSION["usuario"]) && !isset($_SESSION["password"]))
+{
+  header("Location:lost.php");
+  exit;
+}
+//cerrar sesion -----------------------------------------------------------------------------------------------
+include('resources/switch.php');
+//manipular clave ----------------------------------------------------------------------------------------------
+$mysql->conect();
+$msg = array('msg' => "");
+if(isset($_POST['code'])){
+
+  $valor = $_POST['code'];
+  $msg = $mysql->insert_clave($valor);
+  
+}
+$mysql->exit_conect();   //cierro la coneccion 
+?>
 <!doctype html>
 <html lang="es">
 <head>
