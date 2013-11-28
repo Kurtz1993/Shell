@@ -103,7 +103,7 @@ var $dbCon;
 
 		$consult = "SELECT SN FROM dispositivos WHERE SN = '$valor'";
 		$datos = $this->query_assoc($consult); //guardo en un vector los resultados de la consulta
-
+		
 		if($datos != false){
 			return array(
 				'result' => false,

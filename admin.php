@@ -23,7 +23,7 @@ if(isset($_POST['code'])){
 if(isset($_POST['serial'])){
 	
 	$valor = $_POST['serial'];
-	$msg2 = $mysql->insert_serial($valor, $_POST['id']);
+	$msg2 = $mysql->insert_serial($valor);
 	
 }
 $mysql->exit_conect();   //cierro la coneccion 
