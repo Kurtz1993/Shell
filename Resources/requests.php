@@ -33,7 +33,7 @@
 			$rightInfo = "SELECT password FROM usuarios
 						  WHERE idUsuario = $_POST[id]; -- ";
 			$res = $mysql->query_assoc($rightInfo);
-			if($res[0]['password'] == $_POST['pass']){
+			if($res[0]['password'] == sha1($_POST['pass'])){
 				$delete = "DELETE FROM dispositivos
 						   WHERE idDispositivo = $_POST[nodeID]; -- ";
 				$mysql->query($delete);
