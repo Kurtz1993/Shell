@@ -5,15 +5,15 @@ class mysql{
 
 var $dbCon;
 	/* Datos de conexión a la base de datos remota:
-	 * Host: 137.135.47.206
+	 * Host: 23.96.7.96
 	 * User: root
 	 * Pass: Lok'tar93
 	 * DB: shell
 	*/
 
 	public function conect(){
-		//$this->dbCon = new mysqli('137.135.47.206', 'root', "Lok'tar93", 'shell');
-		$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
+		$this->dbCon = new mysqli('23.96.7.96', 'root', "Lok'tar93", 'shell');
+		//$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
 		if(!$this->dbCon)
 			echo $this->show_error();
 	}
