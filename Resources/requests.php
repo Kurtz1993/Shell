@@ -107,7 +107,7 @@
 				$DeviceID = $res[0]['idDispositivo'];
 				$addNewDevice=
 				"UPDATE dispositivos 
-				SET nombre ='$_POST[name]', latitud = $_POST[lat], longitud = $_POST[lon], sensor = $sensor 
+				SET nombre ='$_POST[name]', latitud = $_POST[lat], longitud = $_POST[lon], sensor = $sensor, idUsuario = $_POST[uid]
 				WHERE idDispositivo = $DeviceID; -- ";
 				$mysql->query($addNewDevice);
 				$aux['response']=true;

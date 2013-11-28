@@ -11,7 +11,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 <head>
 	<meta charset="UTF-8">
 	<title>Shell-System</title>
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/favicon.ico">
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
 	<link rel="stylesheet" href="Resources/css/styles.css">
 	<script type="text/javascript"
