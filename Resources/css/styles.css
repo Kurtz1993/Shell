@@ -38,7 +38,7 @@ button.register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-c
 button#loginBtn, button#confirmBtn{ font-size: 1.2em; margin: 5% 0%; padding: 3% 10%; background-color: #313131; }
 div#adminPanel{ padding: 3%; }
 div#map{ height: 300px; width: 40%; border: 1px solid black; margin: 25px auto; }
-div#nodes, div#userInfo{ text-align: center; width: auto; background-color: #061424; color: white; }
+div.nodes, div#userInfo{ text-align: center; width: auto; background-color: #061424; color: white; }
 div#userInfo{ font-size: 2em; }
 input.rad{ margin: 10px 0 10px 4%; }
 span.radText{ font-size: 1.15em; margin-left:0.5%; }
@@ -148,6 +148,9 @@ div#notification{
 	-ms-opacity: .85;
 	opacity: .85;
 }
+div#forgot{width: 25%; padding-bottom: 1%; margin-right:auto; margin-left:38.7%;}
+div#forgot > div{margin-bottom: 4%;}
+div#forgot > form > input {margin-bottom: 5%; width:85%; margin-left: auto; margin-right: auto;}
 a#forgot{color:#372496;text-decoration: underline;}
 form#addDevice{padding: 5% 13%;}
 form#addDevice > input.form-control{margin-bottom: 8%;}

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Shell Systems</title>
 	<link rel="stylesheet" href="Resources/css/bootstrap.css">
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/favicon.ico">
 	<script src="Resources/js/jquery.js"></script>
 	<script type="text/javascript" src="Resources/js/bootstrap.js"></script>
 	<link rel="stylesheet" href="Resources/css/styles.css">
