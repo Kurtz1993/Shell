@@ -46,7 +46,7 @@ $mysql->exit_conect();   //cierro la coneccion
 		<h2 class="panel-heading">User codes</h2>
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
-				Id Usuario<input type="text" name="id">
+				<!-- Id Usuario<input type="text" name="id"> -->
 				Generated code: <input id="code" type="text" class="form-control-static" name="code"><br><br>
 				<input type="button" value="Generate code" onclick="UserCode();" class="btn btn-primary">
 				<input type="submit" value="Store key" class="btn btn-primary">
