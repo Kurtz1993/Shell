@@ -103,7 +103,6 @@ var $dbCon;
 
 		$consult = "SELECT SN FROM dispositivos WHERE SN = '$valor'";
 		$datos = $this->query_assoc($consult); //guardo en un vector los resultados de la consulta
-		
 		if($datos != false){
 			return array(
 				'result' => false,
@@ -111,8 +110,6 @@ var $dbCon;
 				);
 		}
 		else{
-			$insertar="INSERT INTO dispositivos (idUsuario) values ('$id')";
-			$this->query($insertar); 
 			$insertar="INSERT INTO dispositivos (SN) VALUES ('$valor')";
 			$this->query($insertar);
 			

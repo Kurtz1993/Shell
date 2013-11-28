@@ -109,7 +109,7 @@
 				"UPDATE dispositivos 
 				SET nombre ='$_POST[name]', latitud = $_POST[lat], longitud = $_POST[lon], sensor = $sensor, idUsuario = $_POST[uid]
 				WHERE idDispositivo = $DeviceID; -- ";
-				$mysql->query($addNewDevice);
+				$mysql->query($addNewDevice);	
 				$aux['response']=true;
 				echo json_encode($aux);
 			}
