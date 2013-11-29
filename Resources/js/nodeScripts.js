@@ -180,14 +180,14 @@ function dayChart(deviceID, deviceSensor, symbol, nombre){
 		dataType:'json',
 		data:{action:'dayChart', id: deviceID, anio:''},
 		success: function(data){
-			var color;
-			if(data[0].sensor==1){color = "#FF5252";}
-			else if(data[0].sensor==2){color = "#0074F0";}
-			else if(data[0].sensor==3){color = "#0FF702"}
 			if(data.length == 0){
 				$('div#dayChart').html("It's lonely in here...");
 			}
 			else{
+				var color;
+				if(data[0].sensor==1){color = "#FF5252";}
+				else if(data[0].sensor==2){color = "#0074F0";}
+				else if(data[0].sensor==3){color = "#0FF702"}
 				var chart = new AmCharts.AmSerialChart();
 				chart.dataProvider = data;
 				chart.categoryField = 'Dia';
@@ -232,14 +232,14 @@ function monthChart(deviceID, deviceSensor, symbol, nombre){
 		dataType:'json',
 		data:{action:'monthChart', id: deviceID, anio:''},
 		success: function(data){
-			var color;
-			if(data[0].sensor==1){color = "#FF5252";}
-			else if(data[0].sensor==2){color = "#0074F0";}
-			else if(data[0].sensor==3){color = "#0FF702"}
 			if(data.length == 0){
 				$('div#monthChart').html("It's lonely in here...");
 			}
 			else{
+				var color;
+				if(data[0].sensor==1){color = "#FF5252";}
+				else if(data[0].sensor==2){color = "#0074F0";}
+				else if(data[0].sensor==3){color = "#0FF702"}
 				var chart = new AmCharts.AmSerialChart();
 				chart.dataProvider = data;
 				chart.categoryField = 'Mes';
@@ -284,14 +284,14 @@ function yearChart(deviceID, deviceSensor, symbol, nombre){
 		dataType:'json',
 		data:{action:'yearChart', id: deviceID},
 		success: function(data){
-			var color;
-			if(data[0].sensor==1){color = "#FF5252";}
-			else if(data[0].sensor==2){color = "#0074F0";}
-			else if(data[0].sensor==3){color = "#0FF702"}
 			if(data.length == 0){
 				$('div#yearChart').html("It's lonely in here...");
 			}
 			else{
+				var color;
+				if(data[0].sensor==1){color = "#FF5252";}
+				else if(data[0].sensor==2){color = "#0074F0";}
+				else if(data[0].sensor==3){color = "#0FF702"}
 				var chart = new AmCharts.AmSerialChart();
 				chart.dataProvider = data;
 				chart.categoryField = 'Anio';
