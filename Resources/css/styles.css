@@ -37,9 +37,7 @@ div#userData > input{ margin-top: 5%; }
 button.register{ font-size: 1.4em; margin: 5% 0%; padding: 0.5% 3%; background-color: #313131; }
 button#loginBtn, button#confirmBtn{ font-size: 1.2em; margin: 5% 0%; padding: 3% 10%; background-color: #313131; }
 div#adminPanel{ padding: 3%; }
-div#map{ height: 300px; width: 40%; border: 1px solid black; margin: 25px auto; }
-div.nodes, div#userInfo{ text-align: center; width: auto; background-color: #061424; color: white; }
-div#userInfo{ font-size: 2em; }
+.title{ text-align: center; width: auto; background-color: #061424; color: white; font-size: 2em;}
 input.rad{ margin: 10px 0 10px 4%; }
 span.radText{ font-size: 1.15em; margin-left:0.5%; }
 div#user{padding: 1% 15%;}
@@ -123,7 +121,6 @@ td.tableHeading{
 	padding: 5px 10px;
 	border: 1px solid white;
 }
-div#stadistics{width: 50%; margin: 3% auto; height:250px;}
 div#notification{
 	margin-left: 40%;
 	margin-top: 10%;
@@ -156,17 +153,24 @@ form#addDevice{padding: 5% 13%;}
 form#addDevice > input.form-control{margin-bottom: 8%;}
 form#addDevice > button{margin-top: -1%;}
 td{border:1px solid white; text-align: center;}
-@media screen and (min-width: 480px)  {
-	div.adminTable{
-		padding: 2%;
-		margin-left: 0;
-		margin-right: 0;
-	}
+div#map{
+	height: 400px;
+	width: 40%;
+	float: left;
+	margin: 1.5%;
 }
-@media screen and (min-width: 801px)  {
-	div.adminTable{
-		padding: 2%;
-		margin-left: 18%;
-		margin-right: 15%;
-	}	
+div#readChart{
+	border: 1px solid black;
+	height: 350px;
+	width: 54%;
+	float: left;
+	margin: 1.5%;
+}
+div#minMax{
+	height: 50px;
+	border: 1px solid black;
+	width: 54%;
+	float: right;
+	margin: -1.6% 1.5% 1.5% 1.5%;
+	font-size: 1.2em;
 }

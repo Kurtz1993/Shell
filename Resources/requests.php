@@ -5,16 +5,16 @@
 	$mysql->conect();
 	$action = $_POST['action'];
 	switch($action){
-		case 'loadRadios':
-				$getNodes = "SELECT idDispositivo, nombre FROM dispositivos
-				             WHERE idUsuario = $_SESSION[id]; -- ";
-				$res = $mysql->query_assoc($getNodes);
-				echo json_encode($res);
-			break;
 		case 'loadMap':
-			$getNodeCoord = "SELECT * FROM dispositivos
-				             WHERE idDispositivo = $_POST[id]; -- ";
-				echo json_encode($mysql->query_assoc($getNodeCoord));
+			$getDevicesLocation = 
+			"SELECT * FROM dispositivos; -- ";
+			echo json_encode($mysql->query_assoc($getDevicesLocation));
+			break;
+
+		case 'loadDeviceData':
+			$getDeviceData =
+			"SELECT lectura, diaLectura FROM data WHERE idDispositivo = $_POST[id] ORDER BY diaLectura; -- ";
+			echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
 		case 'loadUserInfo':
 			$getUserData = "SELECT corporation, tel, correo
@@ -22,12 +22,14 @@
 							WHERE idUsuario = $_POST[id]; -- ";
 			echo json_encode($mysql->query_assoc($getUserData));
 			break;
+
 		case 'loadNodes':
 			$getNodes = "SELECT nombre Name, idDispositivo ID
 						 FROM dispositivos
 						 WHERE idUsuario = $_POST[id] AND latitud IS NOT NULL; -- ";
 			echo json_encode($mysql->query_assoc($getNodes));
 			break;
+
 		case 'deleteNode':
 			$ret = array('msg'=>'','res'=>'');
 			$rightInfo = "SELECT password FROM usuarios
@@ -47,11 +49,13 @@
 				echo json_encode($ret);
 			}
 			break;
+
 		case 'loadUsersTable':
 			$getUsersInformation = "SELECT * FROM usuarios
 									WHERE idUsuario != 1; -- ";
 			echo json_encode($mysql->query_assoc($getUsersInformation));
 			break;
+
 		case 'deleteUser':
 			$ret = array('msg'=>'','res'=>'');
 			$rightInfo = "SELECT password FROM usuarios
@@ -71,6 +75,7 @@
 				echo json_encode($ret);
 			}
 			break;
+
 		case 'loadAllNodes':
 			$getAllNodes =
 			"SELECT idDispositivo ID, nombre Name, SN SN, latitud Lat, longitud Longi, sensor Sens, 
@@ -81,6 +86,7 @@
 			ON U.idUsuario = D.idUsuario; -- ";
 			echo json_encode($mysql->query_assoc($getAllNodes));
 			break;
+
 		case 'editUserInfo':
 			$updateUserInfo =
 			"UPDATE Usuarios
@@ -88,6 +94,7 @@
 			 WHERE idUsuario = $_POST[id]; -- ";
 			 $res = $mysql->query($updateUserInfo);
 			break;
+
 		case 'editUserPassword':
 			$password = sha1($_POST['pass']);
 			$updatePassword = 
@@ -96,6 +103,7 @@
 			 WHERE idUsuario = $_POST[id]; -- ";
 			 $res = $mysql->query($updatePassword);
 			 break;
+
 		case 'newNode':
 			$aux = array('response'=>'');
 			$lookForSN = "SELECT idDispositivo, sensor 
@@ -118,6 +126,7 @@
 				echo json_encode($aux);
 			}
 			break;
+
 		case 'loadNodeData':
 			$getDeviceData =
 			"SELECT Da.ID, Da.lectura valor, Da.horaLectura, Da.diaLectura day, Di.sensor
@@ -127,6 +136,7 @@
 			 WHERE Da.idDispositivo = $_POST[id]; -- ";
 			 echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
+
 		case 'loadGraph':
 				$getProm =
 				"SELECT ROUND(AVG(lectura),2) Promedio, DAY(diaLectura) Dia

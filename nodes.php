@@ -19,10 +19,14 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
     </script>
 	<script src="Resources/js/jquery.js"></script>
 	<script src="Resources/js/functions.js"></script>
-	<script src="Resources/js/userScripts.js"></script>
-	<script src="Resources/js/bootstrap.js"></script>
-	<script src="resources/js/amcharts.js"></script>
-	<script src="resources/js/serial.js"></script>
+	<script src="Resources/js/nodeScripts.js"></script>
+	<script src="resources/js/amcharts/amcharts.js"></script>
+	<script src="resources/js/amcharts/serial.js"></script>
+	<script src="resources/js/amcharts/xy.js"></script>
+	<!-- <script src="resources/js/amcharts/gauge.js"></script>
+	<script src="resources/js/amcharts/pie.js"></script>
+	<script src="resources/js/amcharts/radar.js"></script>
+	<script src="resources/js/amcharts/funnel.js"></script> -->
 </head>
 <body>
 	<?php
@@ -37,14 +41,10 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	}	
 	?>
 
-	<div class="nodes">Select a device to display information:</div>
-	<div id="nodes" class="nodes"><!-- Fill with all the nodes that the user has --></div>
-	<div id="map"><!-- Fill with device location --></div>
-	<div id="stadistics"><!-- Fill with stadistic data --></div>
-	<div id="tableData"><!-- Fill with the device data --></div>
-
-
-
+	<div class="title">Select a device to display information:</div>
+	<div id="map"><!-- Fill with map --></div>
+	<div id="readChart"><!-- Fill with device's lectures --></div>
+	<div id="minMax"></div>
 
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">

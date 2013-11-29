@@ -1,23 +1,7 @@
 $(document).ready(function() {
-	loadRadioButtons();
 	loadUserBasicInfo();
 	loadNodeTable();
-	
-	$(document).on('click', 'input.rad', function(event) {
-		var deviceID = $(this).val();
-
-		$.ajax({
-			url: 'resources/requests.php',
-			type: 'post',
-			dataType: 'json',
-			data: {action: 'loadMap', id: deviceID},
-			success: function(nodeInfo){
-				loadMap(nodeInfo[0].latitud, nodeInfo[0].longitud, 'map',nodeInfo[0].sensor,nodeInfo[0].nombre);
-				loadNodeData(deviceID);
-				loadGraph(deviceID);
-			}
-		});
-	});
+	//User.php scripts-----------------------------------------------------------
 	$(document).on('click', 'a.showOnMap', function(event) {
 		event.preventDefault();
 		$('.loginForm').hide(500);

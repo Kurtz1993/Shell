@@ -49,7 +49,7 @@ $mysql->exit_conect();   //cierro la coneccion
       </div>
     </div>
   </nav>
-  <div id="userInfo">Edit your information</div>
+  <div class="title">Edit your information</div>
   <input type="hidden" id="userID" value="<?php echo $_SESSION['id']; ?>">
 
   <!-- User Information -->
@@ -84,7 +84,7 @@ $mysql->exit_conect();   //cierro la coneccion
     <div id="nodesTable"></div>
     
     <div id="addForm">
-      <div id="userInfo">Add New Node</div>
+      <div class="title">Add New Node</div>
       <form id="addDevice">
         <input type="text" id="serial" class="form-control" placeholder="Serial Number" autofocus required>
         <input type="text" id="deviceName" class="form-control" placeholder="Device Name" required>
@@ -101,7 +101,7 @@ $mysql->exit_conect();   //cierro la coneccion
 
   <!-- Delete confirmation form -->
   <div class="loginForm" class="panel-success">
-    <div id="userInfo">Confirm delete</div>
+    <div class="title">Confirm delete</div>
     <form id="loginForm">
       <input type="password" id="pswd" class="form-control" placeholder="Password" required autofocus>
       <button type="submit" id="confirmBtn" class="btn btn-primary">Confirm</button>
