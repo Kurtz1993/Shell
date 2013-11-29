@@ -1,5 +1,15 @@
 $(document).ready(function() {
 	loadMap();
+	$(document).on('click', 'a.page', function(event) {
+		event.preventDefault();
+		var symbol;
+		if($('input#deviceID').val() == 1){
+			symbol = "ºC";
+		} else symbol = "%";
+		loadPage($('input#deviceID').val(), this.id,symbol);
+		$('li.active').removeClass('active');
+		$(this).addClass('active');
+	});
 });
 
 function loadMap(){
@@ -38,10 +48,13 @@ function loadMap(){
 					map: Mapa
 				};
 				var currentPosition = new google.maps.Marker(coordinates);	//Se agrega la marca al mapa.
-
+				
 				google.maps.event.addListener(currentPosition,'click',function(event){
 					$('div#readChart').html("Loading chart... Please wait.");
 					deviceCharts(deviceID, deviceSensor, symbol, nombre);
+					$('div#deviceTable').html("Loading all registries... Please wait.");
+					$('input#deviceID').attr('value', deviceID);
+					loadDeviceTable(deviceID, symbol);
 				});
 			};
 			for(i=0; i<device.length; i++){
@@ -145,16 +158,85 @@ function deviceCharts(deviceID, deviceSensor, symbol, nombre){
 	});
 }
 
+function loadDeviceTable(deviceID, symbol){
+	$.ajax({
+		url:'resources/requests.php',
+		type:'post',
+		dataType:'json',
+		data:{action:'loadDeviceTable',id:deviceID},
+		success: function(response){
+			var table = '<table id="tableNodesInfo">' +
+                      '<tr>' +
+                      '<td class="tableHeading">Nº of registry</td>' +
+                      '<td class="tableHeading">Device Name</td>' +
+                      '<td class="tableHeading">Reading</td>' +
+                      '<td class="tableHeading">Time</td>' +
+                      '<td class="tableHeading">Date</td>' +
+                      '</tr>';
+	        for(i=0; i<100; i++){
+	          table+= '<tr>';
+	          table+= '<td>'+response[i].ID+'</td>';
+	          table+= '<td>'+response[i].Nombre+'</td>';
+	          table+= '<td>'+response[i].lectura+symbol+'</td>';
+	          table+= '<td>'+response[i].Hora+'</td>';
+	          table+= '<td>'+response[i].Dia+'</td>';
+	          table+= '</tr>';
+	        }
+	        table+='</table>';
+	        var links = Math.ceil((response.length/100));
+	        var pages='<ul id="pages">';
+	        pages+='<li class="active pageNumber"><a href="" id="0">1</a></li>'
+	        for(i=1; i<links;i++){
+	        	pages+='<li class="pageNumber"><a href="" class="page" id="'+i+'">'+(i+1)+'</a></li>';
+	        }
+	       	pages+='</ul>';
+	        $('#deviceTable').html(
+	        	'<center>'+pages+'</center>' + '<br>'+	table
+	        );
+		}
+	});
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+function loadPage(deviceID, offset, symbol){
+	var page;
+	if(offset == 0)
+		page = 1;
+	else
+		page = offset * 100;
+	$.ajax({
+		url:'resources/requests.php',
+		type:'post',
+		dataType:'json',
+		data:{action:'loadTablePage',id:deviceID, page:page},
+		success: function(response){
+			var table = '<table id="tableNodesInfo">' +
+                      '<tr>' +
+                      '<td class="tableHeading">Nº of registry</td>' +
+                      '<td class="tableHeading">Device Name</td>' +
+                      '<td class="tableHeading">Reading</td>' +
+                      '<td class="tableHeading">Time</td>' +
+                      '<td class="tableHeading">Date</td>' +
+                      '</tr>';
+	        for(i=0; i<100; i++){
+	          table+= '<tr>';
+	          table+= '<td>'+response[i].ID+'</td>';
+	          table+= '<td>'+response[i].Nombre+'</td>';
+	          table+= '<td>'+response[i].lectura+symbol+'</td>';
+	          table+= '<td>'+response[i].Hora+'</td>';
+	          table+= '<td>'+response[i].Dia+'</td>';
+	          table+= '</tr>';
+	        }
+	        table+='</table>';
+	        var links = Math.ceil((response.length/100));
+	        var pages='<ul id="pages">';
+	        pages+='<li class="active pageNumber"><a href="" id="1">1</a></li>'
+	        for(i=2; i<=links;i++){
+	        	pages+='<li class="pageNumber"><a href="" id="'+i+'">'+i+'</a></li>';
+	        }
+	       	pages+='</ul>';
+	        $('#deviceTable').html(
+	        	'<center>'+pages+'</center>' + '<br>'+	table
+	        );
+		}
+	});
+}

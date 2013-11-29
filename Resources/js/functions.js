@@ -48,8 +48,8 @@ function loadNodeTable(){
                       '</tr>';
         for(i=0; i<=nodeInfo.length -1; i++){
           table+= '<tr>';
-          table+=   '<td>'+nodeInfo[i].Name+'</td>';
-          table+=   '<td>'+
+          table+=   '<td class="tableContent">'+nodeInfo[i].Name+'</td>';
+          table+=   '<td class="tableContent">'+
                     '<a href="" id="'+nodeInfo[i].ID+'" class="showOnMap linkNodes">View</a> | '+
                     '<a href="" id="'+nodeInfo[i].ID+'" class="delete linkNodes">Delete</a></td>';
           table+= '</tr>';

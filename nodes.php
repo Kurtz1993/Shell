@@ -40,11 +40,11 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 		include('login.html');
 	}	
 	?>
-
+	<input type="hidden" id="deviceID">
 	<div class="title">Click a device on the map to display information</div>
 	<div id="map"><!-- Fill with map --></div>
 	<div id="readChart"><!-- Fill with device's lectures --></div>
-	<div id="minMax"></div>
+	<div id="deviceTable"><!-- Fill with all data --></div>
 
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">

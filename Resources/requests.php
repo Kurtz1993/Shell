@@ -16,18 +16,42 @@
 			"SELECT lectura, diaLectura FROM data WHERE idDispositivo = $_POST[id] ORDER BY diaLectura; -- ";
 			echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
+
+		case 'loadDeviceTable':
+			$getAllRegistries =
+			"SELECT Da.ID, Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
+			FROM data Da 
+			INNER JOIN dispositivos Di
+			ON Di.idDispositivo = Da.idDispositivo
+			WHERE Da.idDispositivo = $_POST[id]
+			ORDER BY Da.diaLectura AND Da.horaLectura; -- ";
+			echo json_encode($mysql->query_assoc($getAllRegistries));
+			break;
+
+		case 'loadTablePage':
+			$getPage=
+			"SELECT Da.ID, Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
+			FROM data Da 
+			INNER JOIN dispositivos Di
+			ON Di.idDispositivo = Da.idDispositivo
+			WHERE Da.idDispositivo = $_POST[id]
+			ORDER BY Da.diaLectura AND Da.horaLectura
+			LIMIT $_POST[page], 100; -- ";
+			echo json_encode($mysql->query_assoc($getPage));
+			break;
+
+		case 'totalDeviceData':
+			$getData =
+			"SELECT COUNT(*) total FROM data WHERE idDispositivo = $_POST[id]; -- ";
+			echo json_encode($mysql->query_assoc($getData));
+			break;
+
 		case 'loadUserInfo':
 			$getUserData = "SELECT corporation, tel, correo
 							FROM usuarios
 							WHERE idUsuario = $_POST[id]; -- ";
+			
 			echo json_encode($mysql->query_assoc($getUserData));
-			break;
-
-		case 'loadNodes':
-			$getNodes = "SELECT nombre Name, idDispositivo ID
-						 FROM dispositivos
-						 WHERE idUsuario = $_POST[id] AND latitud IS NOT NULL; -- ";
-			echo json_encode($mysql->query_assoc($getNodes));
 			break;
 
 		case 'deleteNode':
