@@ -9,7 +9,7 @@ $(document).ready(function() {
 			url: 'resources/requests.php',
 			type: 'post',
 			dataType: 'json',
-			data: {action: 'loadMap', id:this.id},
+			data: {action: 'loadMapForUser', id:this.id},
 			success: function(nodeCoordinates){
 				loadMap(nodeCoordinates[0].latitud, nodeCoordinates[0].longitud,"nodesMap", nodeCoordinates[0].sensor,nodeCoordinates[0].nombre);
 			}

@@ -11,6 +11,13 @@
 			echo json_encode($mysql->query_assoc($getDevicesLocation));
 			break;
 
+		case 'loadMapForUser':
+			$getSpecificMap=
+			"SELECT latitud, longitud, sensor, nombre FROM dispositivos
+			WHERE idDispositivo = $_POST[id]; -- ";
+			echo json_encode($mysql->query_assoc($getSpecificMap));
+			break;
+
 		case 'loadNodes':
 			$getNodes=
 			"SELECT idDispositivo ID, nombre Name FROM dispositivos; -- ";
