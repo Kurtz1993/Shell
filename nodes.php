@@ -22,11 +22,6 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	<script src="Resources/js/nodeScripts.js"></script>
 	<script src="resources/js/amcharts/amcharts.js"></script>
 	<script src="resources/js/amcharts/serial.js"></script>
-	<script src="resources/js/amcharts/xy.js"></script>
-	<!-- <script src="resources/js/amcharts/gauge.js"></script>
-	<script src="resources/js/amcharts/pie.js"></script>
-	<script src="resources/js/amcharts/radar.js"></script>
-	<script src="resources/js/amcharts/funnel.js"></script> -->
 </head>
 <body>
 	<?php
@@ -44,9 +39,11 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	<input type="hidden" id="userID" value="<?php echo $_SESSION['id']; ?>">
 	<div class="title">Click a device on the map to display information</div>
 	<div id="map"><!-- Fill with map --></div>
-	<div id="readChart"><!-- Fill with device's lectures -->
-		<center><img src="img/shell.png" id="shellLogo"></center>
-	</div>
+	<div id="chronoChart" class="Chart"><!-- Fill with device's lectures --></div>
+	<div id="dayChart" class="Chart"><!-- Fill with device's lectures --></div>
+	<div id="monthChart" class="Chart"><!-- Fill with device's lectures --></div>
+	<div id="yearChart" class="Chart"><!-- Fill with device's lectures --></div>
+	
 	<div id="table">
 		<div id="pagination"></div>
 		<div id="deviceTable"><!-- Fill with all data --></div>

@@ -31,6 +31,36 @@
 			echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
 
+		case 'dayChart':
+			$getDailyData =
+			"SELECT ROUND(AVG(Da.lectura),2) Promedio, Da.diaLectura, Di.sensor, Day(Da.diaLectura) Dia
+			FROM data Da, dispositivos Di
+			WHERE Da.idDispositivo = $_POST[id] AND Di.idDispositivo = $_POST[id]
+			GROUP BY Dia
+			ORDER BY Dia; -- ";
+			echo json_encode($mysql->query_assoc($getDailyData));
+			break;
+
+		case 'monthChart':
+			$getmonthlyData =
+			"SELECT ROUND(AVG(Da.lectura),2) Promedio, Da.diaLectura, Di.sensor, MONTH(Da.diaLectura) Mes
+			FROM data Da, dispositivos Di
+			WHERE Da.idDispositivo = $_POST[id] AND Di.idDispositivo = $_POST[id]
+			GROUP BY Mes
+			ORDER BY Mes;";
+			echo json_encode($mysql->query_assoc($getmonthlyData));
+			break;
+
+		case 'yearChart':
+			$getYearlyData =
+			"SELECT ROUND(AVG(Da.lectura),2) Promedio, Da.diaLectura, Di.sensor, YEAR(Da.diaLectura) Anio
+			FROM data Da, dispositivos Di
+			WHERE Da.idDispositivo = $_POST[id] AND Di.idDispositivo = $_POST[id]
+			GROUP BY Anio
+			ORDER BY Anio;";
+			echo json_encode($mysql->query_assoc($getYearlyData));
+			break;
+
 		case 'loadDeviceTable':
 			$getAllRegistries =
 			"SELECT Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
@@ -38,7 +68,7 @@
 			INNER JOIN dispositivos Di
 			ON Di.idDispositivo = Da.idDispositivo
 			WHERE Da.idDispositivo = $_POST[id]
-			ORDER BY Da.diaLectura; -- ";
+			ORDER BY Da.diaLectura DESC; -- ";
 			echo json_encode($mysql->query_assoc($getAllRegistries));
 			break;
 
@@ -190,6 +220,12 @@
 			$charData=
 			"SELECT * FROM dispositivos WHERE idUsuario = $_POST[uid]; -- ";
 			echo json_encode($mysql->query_assoc($charData));
+			break;
+
+		case 'lastReading':
+			$getLast =
+			"SELECT lectura FROM dispositivos WHERE idDispositivo = $_POST[id] ORDER BY ID DESC LIMIT 1; -- ";
+			echo json_encode($mysql->query_assoc($getLast));
 			break;
 	}
  ?>
