@@ -11,6 +11,12 @@
 			echo json_encode($mysql->query_assoc($getDevicesLocation));
 			break;
 
+		case 'loadNodes':
+			$getNodes=
+			"SELECT idDispositivo ID, nombre Name FROM dispositivos; -- ";
+			echo json_encode($mysql->query_assoc($getNodes));
+			break;
+
 		case 'loadDeviceData':
 			$getDeviceData =
 			"SELECT lectura, diaLectura FROM data WHERE idDispositivo = $_POST[id] ORDER BY diaLectura; -- ";
