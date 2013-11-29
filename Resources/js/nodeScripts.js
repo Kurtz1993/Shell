@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$('#map').html("Loading nodes map... Please wait.");
 	loadMap();
 	$(document).on('click', 'a.page', function(event) {
 		event.preventDefault();
@@ -6,9 +7,9 @@ $(document).ready(function() {
 		if($('input#deviceID').val() == 1){
 			symbol = "ºC";
 		} else symbol = "%";
-		loadPage($('input#deviceID').val(), this.id,symbol);
+		loadPage($('input#deviceID').val(), this.id, symbol);
 		$('li.active').removeClass('active');
-		$(this).addClass('active');
+		$(this).parent('.pageNumber').addClass('active');
 	});
 });
 
@@ -17,8 +18,9 @@ function loadMap(){
 		url:'resources/requests.php',
 		type:'post',
 		dataType:'json',
-		data:{action:'loadMap'},
+		data:{action:'loadMap', uid:$('input#userID').val()},
 		success: function(device){
+			$('#readChart').slideDown(1500);
 			var mapConfs = {
 				center : new google.maps.LatLng(19.26610289674101,-103.73572035692632),
 				mapTypeId : google.maps.MapTypeId.ROADMAP,
@@ -53,6 +55,7 @@ function loadMap(){
 					$('div#readChart').html("Loading chart... Please wait.");
 					deviceCharts(deviceID, deviceSensor, symbol, nombre);
 					$('div#deviceTable').html("Loading all registries... Please wait.");
+					$('#pagination').html("");
 					$('input#deviceID').attr('value', deviceID);
 					loadDeviceTable(deviceID, symbol);
 				});
@@ -89,6 +92,10 @@ function deviceCharts(deviceID, deviceSensor, symbol, nombre){
 			var chart;
 			var chartData = [];
 			var chartCursor;
+			var color;
+			if(data[0].sensor==1){color = "#FF5252";}
+			else if(data[0].sensor==2){color = "#0074F0";}
+			else if(data[0].sensor==3){color = "#0FF702"}
 			function zoomChart() {
 			    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
 			    chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
@@ -134,7 +141,7 @@ function deviceCharts(deviceID, deviceSensor, symbol, nombre){
 		    graph.bulletBorderThickness = 2;
 		    graph.bulletBorderAlpha = 1;
 		    graph.lineThickness = 2;
-		    graph.lineColor = "#b5030d";
+		    graph.lineColor = color;
 		    graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'> [[value]]"+symbol+"</span></b><br>";
 		    graph.hideBulletsCount = 50; // this makes the chart to hide bullets when there are more than 50 series in selection
 		    chart.addGraph(graph);
@@ -167,7 +174,6 @@ function loadDeviceTable(deviceID, symbol){
 		success: function(response){
 			var table = '<table id="tableNodesInfo">' +
                       '<tr>' +
-                      '<td class="tableHeading">Nº of registry</td>' +
                       '<td class="tableHeading">Device Name</td>' +
                       '<td class="tableHeading">Reading</td>' +
                       '<td class="tableHeading">Time</td>' +
@@ -175,7 +181,6 @@ function loadDeviceTable(deviceID, symbol){
                       '</tr>';
 	        for(i=0; i<100; i++){
 	          table+= '<tr>';
-	          table+= '<td>'+response[i].ID+'</td>';
 	          table+= '<td>'+response[i].Nombre+'</td>';
 	          table+= '<td>'+response[i].lectura+symbol+'</td>';
 	          table+= '<td>'+response[i].Hora+'</td>';
@@ -185,14 +190,13 @@ function loadDeviceTable(deviceID, symbol){
 	        table+='</table>';
 	        var links = Math.ceil((response.length/100));
 	        var pages='<ul id="pages">';
-	        pages+='<li class="active pageNumber"><a href="" id="0">1</a></li>'
+	        pages+='<li class="active pageNumber"><a href="" class="page" id="0">1</a></li>'
 	        for(i=1; i<links;i++){
 	        	pages+='<li class="pageNumber"><a href="" class="page" id="'+i+'">'+(i+1)+'</a></li>';
 	        }
 	       	pages+='</ul>';
-	        $('#deviceTable').html(
-	        	'<center>'+pages+'</center>' + '<br>'+	table
-	        );
+	        $('#deviceTable').html(table);
+	        $('#pagination').html('<center>'+pages+'</center>');
 		}
 	});
 }
@@ -211,15 +215,13 @@ function loadPage(deviceID, offset, symbol){
 		success: function(response){
 			var table = '<table id="tableNodesInfo">' +
                       '<tr>' +
-                      '<td class="tableHeading">Nº of registry</td>' +
                       '<td class="tableHeading">Device Name</td>' +
                       '<td class="tableHeading">Reading</td>' +
                       '<td class="tableHeading">Time</td>' +
                       '<td class="tableHeading">Date</td>' +
                       '</tr>';
-	        for(i=0; i<100; i++){
+	        for(i=0; i<response.length; i++){
 	          table+= '<tr>';
-	          table+= '<td>'+response[i].ID+'</td>';
 	          table+= '<td>'+response[i].Nombre+'</td>';
 	          table+= '<td>'+response[i].lectura+symbol+'</td>';
 	          table+= '<td>'+response[i].Hora+'</td>';
@@ -227,16 +229,7 @@ function loadPage(deviceID, offset, symbol){
 	          table+= '</tr>';
 	        }
 	        table+='</table>';
-	        var links = Math.ceil((response.length/100));
-	        var pages='<ul id="pages">';
-	        pages+='<li class="active pageNumber"><a href="" id="1">1</a></li>'
-	        for(i=2; i<=links;i++){
-	        	pages+='<li class="pageNumber"><a href="" id="'+i+'">'+i+'</a></li>';
-	        }
-	       	pages+='</ul>';
-	        $('#deviceTable').html(
-	        	'<center>'+pages+'</center>' + '<br>'+	table
-	        );
+	        $('#deviceTable').html(table);
 		}
 	});
 }

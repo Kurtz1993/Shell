@@ -7,7 +7,7 @@
 	switch($action){
 		case 'loadMap':
 			$getDevicesLocation = 
-			"SELECT * FROM dispositivos; -- ";
+			"SELECT * FROM dispositivos WHERE idUsuario = $_POST[uid]; -- ";
 			echo json_encode($mysql->query_assoc($getDevicesLocation));
 			break;
 
@@ -26,30 +26,33 @@
 
 		case 'loadDeviceData':
 			$getDeviceData =
-			"SELECT lectura, diaLectura FROM data WHERE idDispositivo = $_POST[id] ORDER BY diaLectura; -- ";
+			"SELECT Da.lectura, Da.diaLectura, Di.sensor FROM data Da, dispositivos Di
+			 WHERE Da.idDispositivo = $_POST[id] AND Di.idDispositivo = $_POST[id] ORDER BY diaLectura; -- ";
 			echo json_encode($mysql->query_assoc($getDeviceData));
 			break;
 
 		case 'loadDeviceTable':
 			$getAllRegistries =
-			"SELECT Da.ID, Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
+			"SELECT Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
 			FROM data Da 
 			INNER JOIN dispositivos Di
 			ON Di.idDispositivo = Da.idDispositivo
 			WHERE Da.idDispositivo = $_POST[id]
-			ORDER BY Da.diaLectura AND Da.horaLectura; -- ";
+			ORDER BY Da.diaLectura; -- ";
 			echo json_encode($mysql->query_assoc($getAllRegistries));
 			break;
 
 		case 'loadTablePage':
 			$getPage=
-			"SELECT Da.ID, Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
+			"SELECT Di.nombre Nombre, Da.lectura, Da.horaLectura Hora, Da.diaLectura Dia 
 			FROM data Da 
 			INNER JOIN dispositivos Di
 			ON Di.idDispositivo = Da.idDispositivo
 			WHERE Da.idDispositivo = $_POST[id]
-			ORDER BY Da.diaLectura AND Da.horaLectura
+			ORDER BY Da.diaLectura
 			LIMIT $_POST[page], 100; -- ";
+			// echo $getPage;
+			// exit;
 			echo json_encode($mysql->query_assoc($getPage));
 			break;
 
@@ -175,12 +178,18 @@
 			break;
 
 		case 'loadGraph':
-				$getProm =
-				"SELECT ROUND(AVG(lectura),2) Promedio, DAY(diaLectura) Dia
-				FROM data
-				WHERE idDispositivo = $_POST[id]
-				GROUP BY DAY(diaLectura); -- ";
-				echo json_encode($mysql->query_assoc($getProm));
-				break;
+			$getProm =
+			"SELECT ROUND(AVG(lectura),2) Promedio, DAY(diaLectura) Dia
+			FROM data
+			WHERE idDispositivo = $_POST[id]
+			GROUP BY DAY(diaLectura); -- ";
+			echo json_encode($mysql->query_assoc($getProm));
+			break;
+
+		case 'allCharts':
+			$charData=
+			"SELECT * FROM dispositivos WHERE idUsuario = $_POST[uid]; -- ";
+			echo json_encode($mysql->query_assoc($charData));
+			break;
 	}
  ?>

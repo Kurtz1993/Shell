@@ -41,10 +41,16 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	}	
 	?>
 	<input type="hidden" id="deviceID">
+	<input type="hidden" id="userID" value="<?php echo $_SESSION['id']; ?>">
 	<div class="title">Click a device on the map to display information</div>
 	<div id="map"><!-- Fill with map --></div>
-	<div id="readChart"><!-- Fill with device's lectures --></div>
-	<div id="deviceTable"><!-- Fill with all data --></div>
+	<div id="readChart"><!-- Fill with device's lectures -->
+		<center><img src="img/shell.png" id="shellLogo"></center>
+	</div>
+	<div id="table">
+		<div id="pagination"></div>
+		<div id="deviceTable"><!-- Fill with all data --></div>
+	</div>
 
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
