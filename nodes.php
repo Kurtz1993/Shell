@@ -41,7 +41,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 	}	
 	?>
 
-	<div class="title">Select a device to display information:</div>
+	<div class="title">Click a device on the map to display information</div>
 	<div id="map"><!-- Fill with map --></div>
 	<div id="readChart"><!-- Fill with device's lectures --></div>
 	<div id="minMax"></div>

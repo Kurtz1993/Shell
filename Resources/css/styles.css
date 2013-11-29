@@ -4,6 +4,8 @@ body{
 	border-radius: 4px;
 	padding-top: 50px;
 	padding-bottom: 90px;
+	font-family: "Helvetica Neue", "Segoe UI", Georgia;
+	font-variant: small-caps;
 }
 img#shellLogo{ margin-top: 30px; }
 div#loginNav{ width: auto; }
@@ -160,17 +162,16 @@ div#map{
 	margin: 1.5%;
 }
 div#readChart{
-	border: 1px solid black;
-	height: 350px;
+	font-size: 1.4em;
+	height: 400px;
 	width: 54%;
 	float: left;
 	margin: 1.5%;
 }
 div#minMax{
-	height: 50px;
 	border: 1px solid black;
-	width: 54%;
-	float: right;
-	margin: -1.6% 1.5% 1.5% 1.5%;
+	width: 97%;
+	float: left;
+	margin: 0 1.5% 5% 1.5%;
 	font-size: 1.2em;
 }

@@ -23,7 +23,7 @@ function loadMap(){
 				}
 				this.Markers = Array();
 			};
-			Mapa.AddMarker = function(lat, lng, deviceSensor, deviceID, symbol){
+			Mapa.AddMarker = function(lat, lng, deviceSensor, deviceID, symbol, nombre){
 				this.DeleteMarkers();		//Elimina las marcas.
 				var markerOptions = {		//Coordenadas de la marca a crear.
 					position: new google.maps.LatLng(lat,lng),
@@ -40,7 +40,8 @@ function loadMap(){
 				var currentPosition = new google.maps.Marker(coordinates);	//Se agrega la marca al mapa.
 
 				google.maps.event.addListener(currentPosition,'click',function(event){
-					deviceCharts(deviceID, deviceSensor, symbol);
+					$('div#readChart').html("Loading chart... Please wait.");
+					deviceCharts(deviceID, deviceSensor, symbol, nombre);
 				});
 			};
 			for(i=0; i<device.length; i++){
@@ -59,13 +60,13 @@ function loadMap(){
 						temp= "%";
 					break;
 				}
-				Mapa.AddMarker(device[i].latitud, device[i].longitud, deviceSensor,device[i].idDispositivo, temp);
+				Mapa.AddMarker(device[i].latitud, device[i].longitud, deviceSensor,device[i].idDispositivo, temp, device[i].nombre);
 			}
 		}
 	});
 }
 
-function deviceCharts(deviceID, deviceSensor,symbol){
+function deviceCharts(deviceID, deviceSensor, symbol, nombre){
 	$.ajax({
 		url:'resources/requests.php',
 		type:'post',
@@ -102,7 +103,7 @@ function deviceCharts(deviceID, deviceSensor,symbol){
 		    categoryAxis.gridAlpha = 0.15;
 		    categoryAxis.minorGridEnabled = true;
 		    categoryAxis.axisColor = "#DADADA";
-		    categoryAxis.title = "Date";
+		    categoryAxis.title = nombre;
 
 		    // value                
 		    var valueAxis = new AmCharts.ValueAxis();
