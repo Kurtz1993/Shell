@@ -1,3 +1,4 @@
+#deviceTable{width: 75%;}
 .navbar{height:50px;}
 body{
 	background-color: #a0a0a0;
@@ -200,4 +201,8 @@ li.pageNumber{
 .pageNumber > a{
 	color: #3C0A6E;
 	font-size: 1.14em;
+}
+.adminTable{
+	margin-top:15px;
+	margin-bottom: 10px;
 }

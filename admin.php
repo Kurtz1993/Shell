@@ -56,7 +56,7 @@ $mysql->exit_conect();   //cierro la coneccion
 			</div>
 	</section>
 	<section class="panel-success webForm">
-		<h2 class="panel-heading">Nodes Serial Numbers</h2>
+		<h2 class="panel-heading">Serial Numbers</h2>
 		<form action="admin.php" method="post" name="codeGen">
 			<div id="adminPanel">
 				Generated Serial: <input id="serial" type="text" class="form-control-static" name="serial"><br><br>

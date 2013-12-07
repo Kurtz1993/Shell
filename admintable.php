@@ -23,10 +23,10 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["password"]) && !isset($_SE
 </head>
 <body>
 	<?php include('logged.php'); ?>
-	<div id="userInfo">Users information</div>
+	<div class="title">Users information</div>
 	
 	<div id="table" class="adminTable"></div>
-	<div id="userInfo">Nodes information</div>
+	<div class="title">Nodes information</div>
 	<div id="adminNodesTable" class="adminTable"></div>
 	
 	<!-- Confirm deletion form -->
