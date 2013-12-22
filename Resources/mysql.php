@@ -12,7 +12,7 @@ var $dbCon;
 	*/
 
 	public function conect(){
-		$this->dbCon = new mysqli('23.96.7.96', 'root', "Lok'tar93", 'shell');
+		$this->dbCon = new mysqli('23.96.7.96', 'shell', 'ShellSystems', 'shell');
 		//$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
 		if(!$this->dbCon)
 			echo $this->show_error();
