@@ -12,8 +12,8 @@ var $dbCon;
 	*/
 
 	public function conect(){
-		$this->dbCon = new mysqli('23.96.7.96', 'shell', 'ShellSystems', 'shell');
-		//$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
+		//$this->dbCon = new mysqli('23.96.7.96', 'shell', 'ShellSystems', 'shell');
+		$this->dbCon = new mysqli('localhost', 'root', '', 'shell');
 		if(!$this->dbCon)
 			echo $this->show_error();
 	}
@@ -55,8 +55,9 @@ var $dbCon;
 	public function validar($usuario, $password){
 		
 		$password = sha1($password);
-
 		$consult = "SELECT * FROM usuarios WHERE nickname = '$usuario' and password = '$password'";    //asigno la sintaxis de la consulta a una variable	  
+		// echo $consult;
+		// exit;
 		$datos = $this->query_assoc($consult);
 		if(count($datos)>0)   //verifico si el tamaño del vector es 0  (si es que existe un registro, siempre sera 0, ya que los registros no se repiten)
 		{

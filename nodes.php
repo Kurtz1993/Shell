@@ -1,7 +1,8 @@
 <?php
 session_start();
-if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESSION['id'] < 2))
+if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])))
 {
+	exit;
 	header("location:index.php");
 }
 ?>
@@ -25,7 +26,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])) or ($_SESS
 </head>
 <body>
 	<?php
-	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"])) and ($_SESSION['id'] > 1)){
+	if ((isset($_SESSION["usuario"])) and (isset($_SESSION["password"]))){
 		include('logged.php');
 		include('resources/mysql.php');
 		$mysql = new mysql();

@@ -8,6 +8,7 @@
 		case 'loadMap':
 			$getDevicesLocation = 
 			"SELECT * FROM dispositivos WHERE idUsuario = $_POST[uid]; -- ";
+			//echo $getDevicesLocation;
 			echo json_encode($mysql->query_assoc($getDevicesLocation));
 			break;
 
