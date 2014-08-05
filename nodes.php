@@ -40,6 +40,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])))
 	<input type="hidden" id="userID" value="<?php echo $_SESSION['id']; ?>">
 	<div class="title">Click a device on the map to display information</div>
 	<div id="map"><!-- Fill with map --></div>
+	<div id="charts">
 	<div id="chronoChart" class="Chart"><!-- Fill with device's lectures --></div>
 	<div id="dayChart" class="Chart"><!-- Fill with device's lectures --></div>
 	<div id="monthChart" class="Chart"><!-- Fill with device's lectures --></div>
@@ -49,7 +50,7 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])))
 		<div id="pagination"></div>
 		<div id="deviceTable"><!-- Fill with all data --></div>
 	</div>
-
+</div>
 	<footer class="navbar navbar-inverse navbar-bottom">
 		<div class="container">
 			<div class="navbar-header">
@@ -64,6 +65,9 @@ if ((!isset($_SESSION["usuario"])) or (!isset($_SESSION["password"])))
 			</div>
 		</div>
 	</footer>
-	<script> $('#nodesPage').css({color: '#FFFFFF',	background: '#383838'}); </script>
+	<script> $('#nodesPage').css({color: '#FFFFFF',	background: '#383838'}); $('#chronoChart').click(function(event) {
+		$('#map').slideDown(700);
+		$('#charts').slideUp(700);
+	});</script>
 </body>
 </html>

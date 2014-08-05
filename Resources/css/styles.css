@@ -160,9 +160,12 @@ form#addDevice > button{margin-top: -1%;}
 td{border:1px solid white; text-align: center;}
 div#map{
 	font-size: 1.3em;
-	height: 450px;
+	height: 500px;
 	width: 100%;
 	float: left;
+}
+#charts{
+	display: none;
 }
 div.Chart{
 	font-size: 1.4em;

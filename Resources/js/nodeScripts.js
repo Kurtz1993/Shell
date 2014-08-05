@@ -51,7 +51,8 @@ function loadMap(){
 				var currentPosition = new google.maps.Marker(coordinates);	//Se agrega la marca al mapa.
 				
 				google.maps.event.addListener(currentPosition,'click',function(event){
-					$('div.Chart').html("Loading chart... Please wait.");
+					$('#map').slideUp(700, function(){
+						$('div.Chart').html("Loading chart... Please wait.");
 					chronoChart(deviceID, deviceSensor, symbol, nombre);
 					dayChart(deviceID, deviceSensor, symbol, nombre);
 					monthChart(deviceID, deviceSensor, symbol, nombre);
@@ -60,6 +61,8 @@ function loadMap(){
 					$('#pagination').html("");
 					$('input#deviceID').attr('value', deviceID);
 					loadDeviceTable(deviceID, symbol);
+					});
+					$('#charts').slideDown(700);
 				});
 			};
 			for(i=0; i<device.length; i++){
